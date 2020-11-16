@@ -456,11 +456,27 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
     <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
 
+    <script src="Project/app.js"></script>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
     <script>
+      
+      $(document).ready(function(){
+        $.ajax({
+          type:"GET",
+          url:"http://localhost:3010/empresas",
+          success: function(response){
+            var name = response;
+            var tableStrs = "";
+            Console.log(name,tableStrs);
+            jQuery.each(name, function (i,data){
+            //$("#empresas").append("<tr><td>"+data.EMPRESA_ID+"</td></tr>");
+            })
+          }
+        });
+      });
 
-
-      <!--window.print("Hola"); -->
-      <!-- Write your comments here -->
+     
 
       $("#menu").on("click", function(){
         $(".HamMenu ul").toggle("slow");
@@ -470,15 +486,14 @@
         $(".slider").bxSlider();
       });
 
-      <!-- var x = document.getElementById("").value;-->
+      
       var meses = ["Enero", "Febrero", "Marzo", "Marzo", "Abril",
                    "Mayo", "Junio", "Julio", "Junio", "Agosto",
                    "Septiembre", "Octubre", "Noviembre", "Diciembre"];
 
       var leerHTML= document.getElementById("TotalToneladas").value;
 
-      var escribirHTML;
-      document.getElementById("TotalToneladas").innerHTML = escribir;
+      
 
       myFunction();
       function myFunction() {
@@ -565,6 +580,8 @@
           parseInt(document.getElementById("IngresoEneroProducto6").value, 10);
 
       }
+
+
 
     </script>
 
