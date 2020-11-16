@@ -24,7 +24,11 @@
             </h5>
           </div>
         </div>
-
+        <table id="empresas">
+          <tbody>
+            
+          </tbody>
+        </table>
         <div id="tablaVentas" class="tablas">
           <table>
             <tr>
@@ -456,7 +460,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
     <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
 
-    <script src="Project/app.js"></script>
+    <!--<script src="Project/app.js"></script>-->
 
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
     <script>
@@ -468,9 +472,10 @@
           success: function(response){
             var name = response;
             var tableStrs = "";
-            Console.log(name,tableStrs);
+            
             jQuery.each(name, function (i,data){
-            //$("#empresas").append("<tr><td>"+data.EMPRESA_ID+"</td></tr>");
+            $("#empresas").append("<tr><td>"+data.empresa_id+"</td></tr>");
+            //Console.log(data.EMPRESA_ID);
             })
           }
         });
