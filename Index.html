@@ -25,7 +25,7 @@
           </div>
         </div>
         <input type="button" value="ACTUALIZAR BASE DE DATOS" onclick="actualizarBaseDeDatos()">
-        <table id="empresas">
+        <table id="empresas"class="tablas">
           <tbody>
 
           </tbody>
@@ -466,6 +466,14 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
     <script>
 
+
+
+      //$("#empresas").append("<tr><td>"+"Clarex"+"</td><td>"+5+"</td><td>"+"Value2"+"</td></tr>");
+
+
+
+      //Console.log(data.EMPRESA_ID);
+
       $(document).ready(function(){
         $.ajax({
           type:"GET",
@@ -480,16 +488,7 @@
             //esto deberia de crear una fila como las que tengo ya hechas
             //el objetivo es que puedan ver que se asigne el valor (value= "") y podamos leerlo en el console console.log()
             //para verificar que los datos si se esten transfiriendo
-            $("#empresas").append("
-              <tr>
-                <td>Clarex</td>
-                <td>
-                  Ton:    <input id="+"EjemploToneladasEneroProducto"+" type="+"number"+" value="+data.empresa_id+" onchange="+"myFunction()"+">
-                  Precio: <input id="+"EjemploPrecioEneroProducto"+" type="+"number"+" value="+999+" onchange="+"myFunction()"+">
-                </td>
-                <td>Male</td>
-              </tr>
-            ");
+            $("#empresas").append("<tr><td>"+"Clarex"+"</td><td>"+"Ton:"+"<input id="+"EjemploToneladasEneroProducto"+"type="+"number"+" value="+5+" onchange="+"myFunction()>"+"Precio:"+"<input id="+"EjemploPrecioEneroProducto"+" type="+"number"+" value="+999+" onchange="+"myFunction()>"+"</td><td>"+"Value2"+"</td></tr>");
 
             //Console.log(data.EMPRESA_ID);
             })
