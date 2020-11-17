@@ -1,0 +1,21 @@
+{
+    "name": "empresa",
+    "version": "1.8.0",
+    "description": "",
+    "main": "app.js",
+
+    "scripts": {
+        "start": "node ."
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "dependencies":{
+        "cors": "^2.8.5",
+        "mysql": "^2.18.1",
+        "express": "^4.17.1"
+    },
+    "devDependencies": {
+        "nodemon": "^2.0.6"
+    }
+}
