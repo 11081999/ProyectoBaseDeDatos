@@ -26,7 +26,7 @@
         </div>
         <table id="empresas">
           <tbody>
-            
+
           </tbody>
         </table>
         <div id="tablaVentas" class="tablas">
@@ -464,7 +464,7 @@
 
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
     <script>
-      
+
       $(document).ready(function(){
         $.ajax({
           type:"GET",
@@ -472,16 +472,24 @@
           success: function(response){
             var name = response;
             var tableStrs = "";
-            
+
             jQuery.each(name, function (i,data){
             $("#empresas").append("<tr><td>"+data.empresa_id+"</td></tr>");
             //Console.log(data.EMPRESA_ID);
             })
+
+            var empresasIDArray= {};
+            jQuery.each(name, function (i,data){
+              empresasIDArray.append(data.empresa_id);
+            //Console.log(data.EMPRESA_ID);
+            })
+            console.log(empresasIDArray);
+
           }
         });
       });
 
-     
+
 /*
       $("#menu").on("click", function(){
         $(".HamMenu ul").toggle("slow");
@@ -491,14 +499,14 @@
         $(".slider").bxSlider();
       });
 */
-      
+
       var meses = ["Enero", "Febrero", "Marzo", "Marzo", "Abril",
                    "Mayo", "Junio", "Julio", "Junio", "Agosto",
                    "Septiembre", "Octubre", "Noviembre", "Diciembre"];
 
       //var leerHTML= document.getElementById("TotalToneladas").value;
 
-      
+
 
       myFunction();
       function myFunction() {
