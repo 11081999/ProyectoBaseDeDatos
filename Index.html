@@ -24,6 +24,7 @@
             </h5>
           </div>
         </div>
+        <input type="button" value="ACTUALIZAR BASE DE DATOS" onclick="actualizarBaseDeDatos()">
         <table id="empresas">
           <tbody>
 
@@ -474,31 +475,47 @@
             var tableStrs = "";
 
             jQuery.each(name, function (i,data){
-            $("#empresas").append("<tr><td>"+data.empresa_id+"</td></tr>");
+            //$("#empresas").append("<tr><td>"+data.empresa_id+"</td></tr>");
+
+            //esto deberia de crear una fila como las que tengo ya hechas
+            //el objetivo es que puedan ver que se asigne el valor (value= "") y podamos leerlo en el console console.log()
+            //para verificar que los datos si se esten transfiriendo
+            $("#empresas").append("
+              <tr>
+                <td>Clarex</td>
+                <td>
+                  Ton:    <input id="+"EjemploToneladasEneroProducto"+" type="+"number"+" value="+data.empresa_id+" onchange="+"myFunction()"+">
+                  Precio: <input id="+"EjemploPrecioEneroProducto"+" type="+"number"+" value="999+" onchange="+"myFunction()"+">
+                </td>
+                <td>Male</td>
+              </tr>
+            ");
+
             //Console.log(data.EMPRESA_ID);
             })
 
             var empresasIDArray= {};
             jQuery.each(name, function (i,data){
-              empresasIDArray.append(data.empresa_id);
+              empresasIDArray.append(str(data.empresa_id));
             //Console.log(data.EMPRESA_ID);
             })
-            console.log(empresasIDArray);
+
+            //Aqui es importante que podamos leer los valores de la fila que estamos creando dinámicamente
+            console.log(document.getElementById("EjemploToneladasEneroProducto").value);
+            console.log(document.getElementById("EjemploPrecioEneroProducto").value);
 
           }
         });
       });
 
-
-/*
-      $("#menu").on("click", function(){
-        $(".HamMenu ul").toggle("slow");
+      //FUNCIONES QUE REGISTRAN CUANDO OPRIMES EL BOTON
+      $("#ButtonActualizar").on("click", function(){
+        //codigo al apretar el botón
       });
-
-      $(document).ready(function(){
-        $(".slider").bxSlider();
-      });
-*/
+      //O también funciona
+      function actualizarBaseDeDatos(){
+        //Código
+      }
 
       var meses = ["Enero", "Febrero", "Marzo", "Marzo", "Abril",
                    "Mayo", "Junio", "Julio", "Junio", "Agosto",
