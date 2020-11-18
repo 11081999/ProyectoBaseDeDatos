@@ -12,7 +12,7 @@ const connection = mysql.createConnection({
     host:'localhost',
     user:'root',
     password: 'password',
-    database: 'projectDB2'
+    database: 'project'
 
 })
 
@@ -427,6 +427,19 @@ app.delete('/preciosMeses/:id',(req,res)=>{
         res.send("Precio mes eliminado");
     })
 
+})
+
+app.get('/productos/preciosMeses/mes/:mes',(req,res)=>{
+    const {mes}= req.params;
+    const sql = `Select PRODUCTO.producto_id,PRODUCTO.nombre_producto, PRODUCTO.anio, PRODUCTO.descripcion from PRODUCTO inner join precio_mes on PRODUCTO.producto_id = PRECIO_MES.producto_id where PRECIO_MES.mes='${mes}'`;
+    connection.query(sql,(error,results)=>{
+        if(error) throw error;
+        if(results.length >0){
+            res.json(results);
+        }else{
+            res.send('No hay resultados');
+        }
+    })
 })
 
 
