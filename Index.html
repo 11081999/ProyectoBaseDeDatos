@@ -8,7 +8,7 @@
     <link href="css/IndexStyles.css" rel="stylesheet">
   </head>
   <body>
-   
+
     <main>
 
       <div class="main-wrapper">
@@ -18,7 +18,7 @@
           <div class="tile--css_animations__demo1">
             <h6>
 
-              
+
               <font color="white"><p>AMINOTEC PLUS S.A de C.V.</p></font>
             </h6>
             <h5>
@@ -28,14 +28,14 @@
         </div>
         <input type="button" value="ACTUALIZAR BASE DE DATOS" onclick="actualizarBaseDeDatos()">
 
-        
+
           <tbody>
 
           </tbody>
         </table>
 
         <ul id="tablas"></ul>
-        <p>nombre: <input type = "text" id="nombre-producto"></p> 
+        <p>nombre: <input type = "text" id="nombre-producto"></p>
         <p>año: <input type = "number" id="anio-producto"></p>
         <p>descripción: <input type = "text" id="descripcion-producto"></p>
         <button id= "add-producto">Añadir producto</button>
@@ -48,15 +48,13 @@
 
         <p>id producto que quieres update: <input type = "number" id="id-producto-update"></p>
         <p>id producto update: <input type = "number" id="id-producto-update-nuevo"></p>
-        <p>nombre update: <input type = "text" id="nombre-producto-update"></p> 
+        <p>nombre update: <input type = "text" id="nombre-producto-update"></p>
         <p>año update: <input type = "number" id="anio-producto-update"></p>
         <p>descripción update: <input type = "text" id="descripcion-producto-update"></p>
 
         <button id= "update-producto">Actualizar Producto</button>
-       
         <div id="tablaVentas" class="tablas">
-         
-          <table>
+          <table border="1" style="width:100%;" id="TablaVentas" class="table">
             <tr>
               <th>Ventas</th>
               <th>Enero</th>
@@ -71,440 +69,24 @@
               <th>Octubre</th>
               <th>Noviembre</th>
               <th>Diciembre</th>
-            </tr>
-            <tr>
-              <td>Clarex</td>
-              <td>
-                Ton:    <input id="ToneladasEneroProducto1" type="number" value="1.7" onchange="myFunction()">
-                Precio: <input id="PrecioEneroProducto1"    type="number" value="0" onchange="myFunction()">
-              </td>
-              <td>Male</td>
-            </tr>
-            <tr>
-              <td>L-Lisina</td>
-              <td>
-                Ton:    <input id="ToneladasEneroProducto2" type="number" value="14.8" onchange="myFunction()">
-                Precio: <input id="PrecioEneroProducto2"    type="number" value="0" onchange="myFunction()">
-              </td>
-              <td>Female</td>
-            </tr>
-            <tr>
-              <td>Dl Metionina</td>
-              <td>
-                Ton:    <input id="ToneladasEneroProducto3" type="number" value="19.3" onchange="myFunction()">
-                Precio: <input id="PrecioEneroProducto3"    type="number" value="0" onchange="myFunction()">
-              </td>
-              <td>Female</td>
-            </tr>
-            <tr>
-              <td>L-Treonina</td>
-              <td>
-                Ton:    <input id="ToneladasEneroProducto4" type="number" value="3.3" onchange="myFunction()">
-                Precio: <input id="PrecioEneroProducto4"    type="number" value="0" onchange="myFunction()">
-              </td>
-              <td>Female</td>
-            </tr>
-            <tr>
-              <td>Glutamato Mono</td>
-              <td>
-                Ton:    <input id="ToneladasEneroProducto5" type="number" value="4.4" onchange="myFunction()">
-                Precio: <input id="PrecioEneroProducto5"    type="number" value="0" onchange="myFunction()">
-              </td>
-              <td>Male</td>
-            </tr>
-            <tr>
-              <td>Otros Productos</td>
-              <td>
-                Ton:    <input id="ToneladasEneroProducto6" type="number" value="2.4" onchange="myFunction()">
-                Precio: <input id="PrecioEneroProducto6"    type="number" value="40724.35417" onchange="myFunction()">
-              </td>
-              <td>Male</td>
-            </tr>
-            <tr>
-              <td>TOTAL</td>
-              <td>
-                <option id="TotalToneladasEnero" type="number">0</option>
-              </td>
-              <td>Male</td>
+              <th>TOTAL</th>
             </tr>
           </table>
-         </div>
-
-         <div id="tablaIngresos" class="tablas">
-           <table>
-             <tr>
-               <th>Ingresos</th>
-               <th>Enero</th>
-               <th>Febrero</th>
-               <th>Marzo</th>
-               <th>Abril</th>
-               <th>Mayo</th>
-               <th>Junio</th>
-               <th>Julio</th>
-               <th>Agosto</th>
-               <th>Septiembre</th>
-               <th>Octubre</th>
-               <th>Noviembre</th>
-               <th>Diciembre</th>
-             </tr>
-             <tr>
-               <td>Clarex</td>
-               <td>
-                 <option id="IngresoEneroProducto1" type="number">x</option>
-               </td>
-               <td>Male</td>
-             </tr>
-             <tr>
-               <td>L-Lisina</td>
-               <td>
-                 <option id="IngresoEneroProducto2" type="number">x</option>
-               </td>
-               <td>Female</td>
-             </tr>
-             <tr>
-               <td>Dl Metionina</td>
-               <td>
-                 <option id="IngresoEneroProducto3" type="number">x</option>
-               </td>
-               <td>Female</td>
-             </tr>
-             <tr>
-               <td>L-Treonina</td>
-               <td>
-                 <option id="IngresoEneroProducto4" type="number">x</option>
-               </td>
-               <td>Female</td>
-             </tr>
-             <tr>
-               <td>Glutamato Mono</td>
-               <td>
-                 <option id="IngresoEneroProducto5" type="number">x</option>
-               </td>
-               <td>Male</td>
-             </tr>
-             <tr>
-               <td>Otros Productos</td>
-               <td>
-                 <option id="IngresoEneroProducto6" type="number">x</option>
-               </td>
-               <td>Male</td>
-             </tr>
-             <tr>
-               <td>TOTAL</td>
-               <td>
-                 <option id="TotalIngresosEnero" type="number">0</option>
-               </td>
-               <td>Male</td>
-             </tr>
-           </table>
-          </div>
-
-          <div id="tablaEgresos" class="tablas">
-            <table>
-              <tr>
-                <th>Egresos</th>
-                <th>Enero</th>
-                <th>Febrero</th>
-                <th>Marzo</th>
-                <th>Abril</th>
-                <th>Mayo</th>
-                <th>Junio</th>
-                <th>Julio</th>
-                <th>Agosto</th>
-                <th>Septiembre</th>
-                <th>Octubre</th>
-                <th>Noviembre</th>
-                <th>Diciembre</th>
-              </tr>
-              <tr>
-                <td>Sueldos</td>
-                <td>
-                  <input id="EgresoTipo1" type="number" value="50400">
-                </td>
-                <td>Male</td>
-              </tr>
-              <tr>
-                <td>Honorarios</td>
-                <td>
-                  <input id="EgresoTipo2" type="number" value="3684.2">
-                </td>
-                <td>Female</td>
-              </tr>
-              <tr>
-                <td>Almacenamiento</td>
-                <td>
-                  <input id="EgresoTipo3" type="number" value="5565">
-                </td>
-                <td>Female</td>
-              </tr>
-              <tr>
-                <td>Combustible/Lub</td>
-                <td>
-                  <input id="EgresoTipo4" type="number" value="12523.47">
-                </td>
-                <td>Female</td>
-              </tr>
-              <tr>
-                <td>Suscr. Recaargos</td>
-                <td>
-                  <input id="EgresoTipo5" type="number" value="2000">
-                </td>
-                <td>Female</td>
-              </tr>
-              <tr>
-                <td>Energía Electrica</td>
-                <td>
-                  <input id="EgresoTipo6" type="number" value="0">
-                </td>
-                <td>Male</td>
-              </tr>
-              <tr>
-                <td>Serv Telefónico</td>
-                <td>
-                  <input id="EgresoTipo7" type="number" value="689.95">
-                </td>
-                <td>Male</td>
-              </tr>
-              <tr>
-                <td>Mant. Eq. Oficina</td>
-                <td>
-                  <input id="EgresoTipo8" type="number" value="810">
-                </td>
-                <td>Male</td>
-              </tr>
-              <tr>
-                <td>Mant. Eq. Rep.</td>
-                <td>
-                  <input id="EgresoTipo9" type="number" value="4818092">
-                </td>
-                <td>Male</td>
-              </tr>
-              <tr>
-                <td>Papelería</td>
-                <td>
-                  <input id="EgresoTipo10" type="number" value="455.46">
-                </td>
-                <td>Male</td>
-              </tr>
-              <tr>
-                <td>Seguros Autos</td>
-                <td>
-                  <input id="EgresoTipo11" type="number" value="0">
-                </td>
-                <td>Male</td>
-              </tr>
-              <tr>
-                <td>Seg. Transporte</td>
-                <td>
-                  <input id="EgresoTipo12" type="number" value="0">
-                </td>
-                <td>Male</td>
-              </tr>
-              <tr>
-                <td>Diversos</td>
-                <td>
-                  <input id="EgresoTipo13" type="number" value="3149.52">
-                </td>
-                <td>Male</td>
-              </tr>
-              <tr>
-                <td>Fletes</td>
-                <td>
-                  <input id="EgresoTipo14" type="number" value="2227.06">
-                </td>
-                <td>Male</td>
-              </tr>
-              <tr>
-                <td>Casetas y Estac.</td>
-                <td>
-                  <input id="EgresoTipo15" type="number" value="1050.42">
-                </td>
-                <td>Male</td>
-              </tr>
-              <tr>
-                <td>Asesoría</td>
-                <td>
-                  <input id="EgresoTipo16" type="number" value="0">
-                </td>
-                <td>Male</td>
-              </tr>
-              <tr>
-                <td>No Deduc.</td>
-                <td>
-                  <input id="EgresoTipo17" type="number" value="178">
-                </td>
-                <td>Male</td>
-              </tr>
-              <tr>
-                <td>Gastos Promoc.</td>
-                <td>
-                  <input id="EgresoTipo18" type="number" value="2581.73">
-                </td>
-                <td>Male</td>
-              </tr>
-              <tr>
-                <td>I.M.S.S</td>
-                <td>
-                  <input id="EgresoTipo19" type="number" value="2974.88">
-                </td>
-                <td>Male</td>
-              </tr>
-              <tr>
-                <td>Pasajes y Subscrip.</td>
-                <td>
-                  <input id="EgresoTipo20" type="number" value="25">
-                </td>
-                <td>Male</td>
-              </tr>
-              <tr>
-                <td>Nóminas 2%</td>
-                <td>
-                  <input id="EgresoTipo21" type="number" value="1008">
-                </td>
-                <td>Male</td>
-              </tr>
-              <tr>
-                <td>Infonavit 5%</td>
-                <td>
-                  <input id="EgresoTipo22" type="number" value="1850">
-                </td>
-                <td>Male</td>
-              </tr>
-              <tr>
-                <td>Envios Estaf</td>
-                <td>
-                  <input id="EgresoTipo23" type="number" value="259.43">
-                </td>
-                <td>Male</td>
-              </tr>
-              <tr>
-                <td>2% Sar. Afore</td>
-                <td>
-                  <input id="EgresoTipo24" type="number" value="740">
-                </td>
-                <td>Male</td>
-              </tr>
-              <tr>
-                <td>2% Activos</td>
-                <td>
-                  <input id="EgresoTipo25" type="number" value="0">
-                </td>
-                <td>Male</td>
-              </tr>
-              <tr>
-                <td>Tenencias/Don.</td>
-                <td>
-                  <input id="EgresoTipo26" type="number" value="0">
-                </td>
-                <td>Male</td>
-              </tr>
-              <tr>
-                <td>Gtos Med STE</td>
-                <td>
-                  <input id="EgresoTipo27" type="number" value="0">
-                </td>
-                <td>Male</td>
-              </tr>
-              <tr>
-                <td>Prim. Vac./Depr.</td>
-                <td>
-                  <input id="EgresoTipo28" type="number" value="0">
-                </td>
-                <td>Male</td>
-              </tr>
-              <tr>
-                <td>Gratif./Aguin.</td>
-                <td>
-                  <input id="EgresoTipo29" type="number" value="0">
-                </td>
-                <td>Male</td>
-              </tr>
-              <tr>
-                <td>Comis/Otr Gtos</td>
-                <td>
-                  <input id="EgresoTipo30" type="number" value="0">
-                </td>
-                <td>Male</td>
-              </tr>
-              <tr>
-                <td>Pérdida Camb</td>
-                <td>
-                  <input id="EgresoTipo31" type="number" value="4306.65">
-                </td>
-                <td>Male</td>
-              </tr>
-              <tr>
-                <td>Otros Impuestos</td>
-                <td>
-                  <input id="EgresoTipo32" type="number" value="342" onchange="calcularValoresEgreso()">
-                </td>
-                <td>Male</td>
-              </tr>
-              <tr>
-                <td>TOTAL</td>
-                <td>
-                  <option id="TotalEgresosEnero" type="number">0</option>
-                </td>
-                <td>Male</td>
-              </tr>
-              <tr>
-                <td>Diferencia de Ingresos</td>
-                <td>
-                  <option id="DiferenciaDeIngresos" type="number">0</option>
-                </td>
-                <td>Male</td>
-              </tr>
-              <tr>
-                <td>Prod. Fin. U. C.</td>
-                <td>
-                  <option id="ProductoFinanciero" type="number" value="8439.25">8439.25</option>
-                </td>
-                <td>Male</td>
-              </tr>
-              <tr>
-                <td>Utilidad Mensual</td>
-                <td>
-                  <option id="UtilidadMensual" type="number">0</option>
-                </td>
-                <td>Male</td>
-              </tr>
-              <tr>
-                <td>Utilidad Acumulada</td>
-                <td>
-                  <option id="UtilidadAcumulada" type="number">0</option>
-                </td>
-                <td>Male</td>
-              </tr>
-            </table>
-           </div>
-
+        </div>
       </div>
-
     </main>
 
     <script src="js/jquery.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
     <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
-
-    <!--<script src="Project/app.js"></script>-->
-
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+
     <script>
-
-
-
-      //$("#empresas").append("<tr><td>"+"Clarex"+"</td><td>"+5+"</td><td>"+"Value2"+"</td></tr>");
-
-
-
-      //Console.log(data.EMPRESA_ID);
-
-
 
       $(document).ready(function(){
         $(function (){
-          
-          
+
+
         //funciona para traer toda la tabla de productos
         $.ajax({
           type: "GET",
@@ -558,7 +140,7 @@
             alert('error al cargar los productos');
           }
         });
-            
+
           });
 
           //delete con un id en especifico de producto
@@ -568,18 +150,18 @@
           type: "DELETE",
           url: "http://localhost:3010/productos/"+id,
           success: function(response){
-          
+
           },
           error: function(){
             alert('Producto eliminado');
           }
         });
-        
+
 
           });
 
           //update con un id en específico de producto
-          
+
 
           $('#update-producto').on('click',function(){
             var id = $('#id-producto-update').val();
@@ -595,25 +177,25 @@
                     "descripcion": $('#descripcion-producto-update').val()
                 })
 
-         
+
 
             })
-            
+
 
           });
 
 
-       
+
 
         /*$("#add-producto").on('click',function(){
-        
-          
+
+
           var producto ={
-            
+
             "NOMBRE_PRODUCTO": $("#nombre-producto").val(),
             "ANIO": $("#anio-producto").val(),
             "DESCRIPCION": $("#descripcion-producto").val()
-          
+
 
           };
           console.log(producto);
@@ -634,7 +216,7 @@
         });*/
       });
 
-        
+
         $.ajax({
           type:"GET",
           url:"http://localhost:3010/empresas",
@@ -667,23 +249,69 @@
         });
       });
 
-      //FUNCIONES QUE REGISTRAN CUANDO OPRIMES EL BOTON
-      $("#ButtonActualizar").on("click", function(){
-        //codigo al apretar el botón
-      });
-      //O también funciona
-      function actualizarBaseDeDatos(){
-        //Código
+      var meses = ["Enero", "Febrero", "Marzo", "Abril",
+             "Mayo", "Junio", "Julio", "Agosto",
+             "Septiembre", "Octubre", "Noviembre", "Diciembre"];
+      var productos = ["Prod1", "Prod2", "Prod3", "Prod4", "Prod5"];
+
+      var i;
+      var j;
+      for (i = 0; i < productos.length+2; i++) {
+        var nameOfFunction;
+        var inputToneladas;
+        var inputPrecio;
+
+        var fila= "FilaProducto"+i;
+        $("#TablaVentas").append("<tr"+" id="+fila+"></tr>");
+
+        if(i == 0){
+          var z;
+          for(z = 1; z < meses.length+3; z++){
+            if(z == 1){
+              $("#"+fila).append("<td>"+"DATOS"+"</td>");
+            }else if(z == meses.length+2){
+              $("#"+fila).append("<td>"+"<table border=1 style=width:100%;>"+"<tr>"+"<th>"+"pronostico"+"</th>"+"<th>"+"real"+"</th>"+"</tr>"+"</table>"+"</td>");
+            }else{
+              $("#"+fila).append("<td>"+"<table border=1 style=width:100%;>"+"<tr>"+"<th>"+"pronostico"+"</th>"+"<th>"+"real"+"</th>"+"</tr>"+"</table>"+"</td>");
+            }
+          }
+        }else if(i == productos.length+1){
+          var j;
+          for(j = 1; j < meses.length+3; j++){
+            if(j == 1){
+              $("#"+fila).append("<td>"+"TOTAL"+"</td>");
+            }else if(z == meses.length+2){
+              $("#"+fila).append("<td>"+"<table border=1 style=width:100%;>"+"<tr>"+"<th>"+"pronostico"+"</th>"+"<th>"+"real"+"</th>"+"</tr>"+"</table>"+"</td>");
+            }else{
+              $("#"+fila).append("<td>"+"<table border=1 style=width:100%;>"+"<tr>"+"<th>"+"pronostico"+"</th>"+"<th>"+"real"+"</th>"+"</tr>"+"</table>"+"</td>");
+            }
+          }
+        }else{
+          for(j = 1; j < meses.length+3; j++){
+            var producto= productos[i-1];
+            var mes = meses[j-2];
+            var real= "Real"+meses[j-2]+producto;
+            var pronostico= "Prono"+meses[j-2]+producto;
+
+            var nameOfFunction= "myFunction()";
+            var inputToneladas= "Ton.: <input id="+"Prono"+"Toneladas"+mes+" type="+"number"+" value="+5+"   onchange="+nameOfFunction+">"+"<br>";
+            var inputPrecio   = "Prec: <input id="+"Prono"+"Precio"   +mes+" type="+"number"+" value="+999+" onchange="+nameOfFunction+">"+"<br>";
+            if(j == 1){
+              $("#"+fila).append("<td>"+productos[i-1]+"</td>");
+            }else if(j == meses.length+2){
+              $("#"+fila).append("<td"+" id="+"TotalesProductos>"+"<table border=1 style=width:100%;>"+"<tr>"+"<th"+" id="+"TotalPron"+producto+">"+"TotalPron"+"</th>"+"<th"+" id="+"TotalReal"+producto+">"+"TotalReal"+"</th>"+"</tr>"+"</table></td>");
+            }else{
+              //console.log("Pronostico: "+pronostico);
+              $("#"+fila).append("<td"+" id="+"Valores"+mes+">"+"<table border=1 style=width:100%;>"+"<tr>"+"<th"+" id="+pronostico+">"+""+"</th>"+"<th"+" id="+real+">"+"real"+"</th>"+"</tr>"+"</table>"+"</td>");
+              $("#"+pronostico).append(inputToneladas);
+              $("#"+pronostico).append(inputPrecio);
+            }
+          }
+        }
       }
 
-      var meses = ["Enero", "Febrero", "Marzo", "Marzo", "Abril",
-                   "Mayo", "Junio", "Julio", "Junio", "Agosto",
-                   "Septiembre", "Octubre", "Noviembre", "Diciembre"];
 
-      //var leerHTML= document.getElementById("TotalToneladas").value;
-
-
-
+/*
       myFunction();
       function myFunction() {
         var i;
@@ -769,7 +397,7 @@
           parseInt(document.getElementById("IngresoEneroProducto6").value, 10);
 
       }
-
+*/
 
 
     </script>

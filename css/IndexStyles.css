@@ -135,19 +135,30 @@ main #info{
 	background-color: rgb(240, 240, 240);
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
-
-main .tablas{
-	position: relative;
-	width: 100%;
-}
-
-.tablas table tr td input{
-	width: 50%;
+input{
+	width: 50px;
 	height: auto;
 }
 
 .tablas table {
   max-width: 100%;
+	width: 100%;
+	border-collapse: collapse;
+	position: relative;
+	width: 100%;
+}
+
+table{
+	background-color: rgba(0, 0, 0, 0);
+}
+
+th,td {
+  text-align: left;
+	border: 1px solid black;
+ 	border-collapse: collapse;
+	padding: 0px;
+	vertical-align: middle;
+	text-align: center;
 }
 
 main {
@@ -168,10 +179,9 @@ th {
   color: #fff;
 }
 
-th,td {
-  text-align: left;
-  padding: 0.5em 1em;
-	width: 25%;
+td a, td input, td img {
+    vertical-align: middle;
+    display: inline-block;
 }
 
 .tile--css_animations__demo1 {
