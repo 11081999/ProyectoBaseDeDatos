@@ -8,7 +8,7 @@
     <link href="css/IndexStyles.css" rel="stylesheet">
   </head>
   <body>
-
+   
     <main>
 
       <div class="main-wrapper">
@@ -17,6 +17,8 @@
           <img id="logo" src="images/logo.svg" alt="" width="10%">
           <div class="tile--css_animations__demo1">
             <h6>
+
+              
               <font color="white"><p>AMINOTEC PLUS S.A de C.V.</p></font>
             </h6>
             <h5>
@@ -25,12 +27,35 @@
           </div>
         </div>
         <input type="button" value="ACTUALIZAR BASE DE DATOS" onclick="actualizarBaseDeDatos()">
-        <table id="empresas"class="tablas">
+
+        
           <tbody>
 
           </tbody>
         </table>
+
+        <ul id="tablas"></ul>
+        <p>nombre: <input type = "text" id="nombre-producto"></p> 
+        <p>año: <input type = "number" id="anio-producto"></p>
+        <p>descripción: <input type = "text" id="descripcion-producto"></p>
+        <button id= "add-producto">Añadir producto</button>
+
+        <p>id producto: <input type = "number" id="id-producto"></p>
+        <button id= "buscar-producto">Buscar Producto</button>
+
+        <p>id producto eliminar: <input type = "number" id="id-producto-eliminar"></p>
+        <button id= "eliminar-producto">Eliminar Producto</button>
+
+        <p>id producto que quieres update: <input type = "number" id="id-producto-update"></p>
+        <p>id producto update: <input type = "number" id="id-producto-update-nuevo"></p>
+        <p>nombre update: <input type = "text" id="nombre-producto-update"></p> 
+        <p>año update: <input type = "number" id="anio-producto-update"></p>
+        <p>descripción update: <input type = "text" id="descripcion-producto-update"></p>
+
+        <button id= "update-producto">Actualizar Producto</button>
+       
         <div id="tablaVentas" class="tablas">
+         
           <table>
             <tr>
               <th>Ventas</th>
@@ -474,7 +499,141 @@
 
       //Console.log(data.EMPRESA_ID);
 
+
+
       $(document).ready(function(){
+        $(function (){
+          
+          
+        //funciona para traer toda la tabla de productos
+        $.ajax({
+          type: "GET",
+          url: "http://localhost:3010/productos",
+          success: function(response){
+            jQuery.each(response,function(i,data){
+              $("#tablas").append('<li>id:'+data.producto_id+', nombre: '+data.nombre_producto+', año: '+data.anio+ ', descripción: '+data.descripcion+' </li>');
+            });
+          },
+          error: function(){
+            alert('error al cargar los productos');
+          }
+        });
+        ///funciona el post para crear nuevo producto
+        $("#add-producto").on('click',function(){
+
+              jQuery.ajax({
+                url: "http://localhost:3010/productos",
+                type: "POST",
+                contentType: "application/json",
+                data: JSON.stringify({
+                    "NOMBRE_PRODUCTO": $('#nombre-producto').val(),
+                    "ANIO": $('#anio-producto').val(),
+                    "DESCRIPCION": $('#descripcion-producto').val()
+                })
+            })
+            .done(function(data, textStatus, jqXHR) {
+                console.log("HTTP Request Succeeded: " + jqXHR.status);
+                console.log(data);
+            })
+            .fail(function(jqXHR, textStatus, errorThrown) {
+                console.log("HTTP Request Failed");
+            })
+            .always(function() {
+                /* ... */
+            });
+
+          });
+          // get con un id en especifico de producto
+          $('#buscar-producto').on('click',function(){
+            var id = $('#id-producto').val();
+            $.ajax({
+          type: "GET",
+          url: "http://localhost:3010/productos/"+id,
+          success: function(response){
+            jQuery.each(response,function(i,data){
+              $("#tablas").append('<li>id:'+data.producto_id+', nombre: '+data.nombre_producto+', año: '+data.anio+ ', descripción: '+data.descripcion+' </li>');
+            });
+          },
+          error: function(){
+            alert('error al cargar los productos');
+          }
+        });
+            
+          });
+
+          //delete con un id en especifico de producto
+          $('#eliminar-producto').on('click',function(){
+            var id = $('#id-producto-eliminar').val();
+            $.ajax({
+          type: "DELETE",
+          url: "http://localhost:3010/productos/"+id,
+          success: function(response){
+          
+          },
+          error: function(){
+            alert('Producto eliminado');
+          }
+        });
+        
+
+          });
+
+          //update con un id en específico de producto
+
+          $('#update-producto').on('click',function(){
+            var id = $('#id-producto-update').val();
+            $.ajax({
+              type: "PUT",
+              url:  "http://localhost:3010/productos/"+id,
+              contentType: "application/json",
+                data: JSON.stringify({
+
+                    "producto_id": $('#id-producto-update-nuevo').val(),
+                    "nombre_producto": $('#nombre-producto-update').val(),
+                    "anio": $('#anio-producto-update').val(),
+                    "descripcion": $('#descripcion-producto-update').val()
+                })
+
+         
+
+            })
+            
+
+          });
+
+
+       
+
+        /*$("#add-producto").on('click',function(){
+        
+          
+          var producto ={
+            
+            "NOMBRE_PRODUCTO": $("#nombre-producto").val(),
+            "ANIO": $("#anio-producto").val(),
+            "DESCRIPCION": $("#descripcion-producto").val()
+          
+
+          };
+          console.log(producto);
+          $.ajax({
+            type:"POST",
+            url: "http://localhost:3010/productos",
+            data: producto,
+            success: function(newData){
+              $("#tablas").append('<li> nombre: '+newData.nombre_producto+', año: '+newData.anio+ ', descripción: '+newData.descripcion+' </li>');
+
+            },
+            error: function(){
+            alert('error al guardar nuevo producto');
+          }
+          });
+
+
+        });*/
+      });
+
+        
         $.ajax({
           type:"GET",
           url:"http://localhost:3010/empresas",

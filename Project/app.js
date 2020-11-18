@@ -12,7 +12,7 @@ const connection = mysql.createConnection({
     host:'localhost',
     user:'root',
     password: 'password',
-    database: 'project'
+    database: 'projectDB2'
 
 })
 
@@ -504,7 +504,7 @@ app.post('/productos',(req,res)=>{
 app.put('/productos/:id',(req,res)=>{
     const {id}= req.params;
     const {producto_id,nombre_producto,anio,descripcion}=req.body;
-    const sql = `UPDATE producto SET PRODUCTO_ID='${producto_id}', NOMBRE_PRODUCTO='${nombre_producto}', ANIO='${anio}', DESCRIPCION='${descripcion}'' WHERE PRODUCTO_ID='${id}'`
+    const sql = `UPDATE producto SET PRODUCTO_ID='${producto_id}', NOMBRE_PRODUCTO='${nombre_producto}', ANIO='${anio}', DESCRIPCION='${descripcion}' WHERE PRODUCTO_ID='${id}'`
     connection.query(sql,error =>{
         if(error) throw error;
         res.send("Producto actualizado");
