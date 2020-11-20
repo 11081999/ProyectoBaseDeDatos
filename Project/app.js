@@ -431,7 +431,7 @@ app.delete('/preciosMeses/:id',(req,res)=>{
 
 app.get('/productos/preciosMeses/mes/:mes',(req,res)=>{
     const {mes}= req.params;
-    const sql = `Select PRODUCTO.producto_id,PRODUCTO.nombre_producto, PRODUCTO.anio, PRODUCTO.descripcion from PRODUCTO inner join precio_mes on PRODUCTO.producto_id = PRECIO_MES.producto_id where PRECIO_MES.mes='${mes}'`;
+    const sql = `Select PRODUCTO.producto_id,PRODUCTO.nombre_producto, PRODUCTO.anio, PRODUCTO.descripcion, PRECIO_MES.precio_mes, PRECIO_MES.mes  from PRODUCTO inner join precio_mes on PRODUCTO.producto_id = PRECIO_MES.producto_id where PRECIO_MES.mes='${mes}'`;
     connection.query(sql,(error,results)=>{
         if(error) throw error;
         if(results.length >0){
