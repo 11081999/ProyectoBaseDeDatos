@@ -126,6 +126,8 @@
 
           });
           // get con un id en especifico de producto
+          var productos = [];
+
           $('#buscar-producto').on('click',function(){
             var id = $('#id-producto').val();
             $.ajax({
@@ -134,6 +136,7 @@
           success: function(response){
             jQuery.each(response,function(i,data){
               $("#tablas").append('<li>id:'+data.producto_id+', nombre: '+data.nombre_producto+', año: '+data.anio+ ', descripción: '+data.descripcion+' </li>');
+              productos.append(data.nombre_producto);
             });
           },
           error: function(){
@@ -252,7 +255,7 @@
       var meses = ["Enero", "Febrero", "Marzo", "Abril",
              "Mayo", "Junio", "Julio", "Agosto",
              "Septiembre", "Octubre", "Noviembre", "Diciembre"];
-      var productos = ["Prod1", "Prod2", "Prod3", "Prod4", "Prod5"];
+      //var productos = ["Prod1", "Prod2", "Prod3", "Prod4", "Prod5"];
 
       var i;
       var j;
