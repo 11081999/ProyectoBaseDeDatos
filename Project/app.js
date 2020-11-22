@@ -52,12 +52,30 @@ app.get('/egresos/:id',(req,res)=>{
 
 
 
-app.get('/tabla/nombreProducto/:nombreProducto/anio/:anio/mes/:mes',(req,res)=>{
+app.get('/tabla/toneladas/nombreProducto/:nombreProducto/anio/:anio/mes/:mes',(req,res)=>{
     const {nombreProducto } = req.params;
     const {anio } = req.params;
     const {mes } = req.params;
 
     const sql =`SELECT SUM(VENTA_TIENE_PRODUCTO.TONELADAS_VENDIDAS) FROM PRODUCTO NATURAL JOIN PRECIO_MES NATURAL JOIN VENTA_TIENE_PRODUCTO WHERE PRODUCTO.ANIO = ${ anio} and PRODUCTO.NOMBRE_PRODUCTO = '${ nombreProducto}' and PRECIO_MES.MES = ${ mes}`;
+    connection.query(sql,(error,results)=>{
+        if(error) throw error;
+        if(results.length >0){
+            res.json(results);
+        }else{
+            res.send('No hay resultados');
+        }
+    })
+
+})
+
+
+app.get('/tabla/precio/nombreProducto/:nombreProducto/anio/:anio/mes/:mes',(req,res)=>{
+    const {nombreProducto } = req.params;
+    const {anio } = req.params;
+    const {mes } = req.params;
+
+    const sql =`SELECT precio_mes.precio_mes FROM PRODUCTO NATURAL JOIN PRECIO_MES WHERE PRODUCTO.ANIO = ${ anio} and PRODUCTO.NOMBRE_PRODUCTO = '${ nombreProducto}' and PRECIO_MES.MES = ${ mes}`;
     connection.query(sql,(error,results)=>{
         if(error) throw error;
         if(results.length >0){

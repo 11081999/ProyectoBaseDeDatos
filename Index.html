@@ -347,12 +347,30 @@
               
                 $.ajax({
                 type: "GET",
-                url: "http://localhost:3010/tabla/nombreProducto/"+nombreProducto+"/anio/"+anio+"/mes/"+mes,
+                url: "http://localhost:3010/tabla/toneladas/nombreProducto/"+nombreProducto+"/anio/"+anio+"/mes/"+mes,
                 success: function(response){
                 jQuery.each(response,function(i,data){
                   realCalculado = data;
                   console.log(data);
-               
+                  console.log(i);
+                
+              
+
+                  });
+                },
+                error: function(){
+                  alert('error al cargar los productos');
+                }
+              });
+
+              $.ajax({
+                type: "GET",
+                url: "http://localhost:3010/tabla/precio/nombreProducto/"+nombreProducto+"/anio/"+anio+"/mes/"+mes,
+                success: function(response){
+                jQuery.each(response,function(i,data){
+                  realCalculado = data;
+                  console.log(data);
+                  console.log(i);
                 
               
 
