@@ -140,15 +140,16 @@ input{
 	height: auto;
 }
 
-.tablas table {
+table {
   max-width: 100%;
 	width: 100%;
 	border-collapse: collapse;
 	position: relative;
 	width: 100%;
+	border: 0px;
 }
 
-.tablas th,td {
+#TablaVentas th,td {
   text-align: left;
 	border: 1px solid black;
  	border-collapse: collapse;
@@ -183,7 +184,7 @@ main {
 */
 
 .TableInside {
-	
+
 }
 
 td a, td input, td img {

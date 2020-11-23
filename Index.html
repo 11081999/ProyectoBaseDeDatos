@@ -294,7 +294,7 @@
           console.log(isOdd(i)+";"+i);
           bkColor= "bgcolor= gltred;"
         }else{
-          bkColor= "bgcolor= white;"
+          bkColor= "bgcolor= ;"
         }
 
         var fila= "FilaProducto"+i;
@@ -317,9 +317,9 @@
             if(j == 1){
               $("#"+fila).append("<td>"+"TOTAL"+"</td>");
             }else if(z == meses.length+2){
-              $("#"+fila).append("<td>"+"<table "+bkColor+" border=1 style=width:100%;>"+"<tr>"+"<th>"+"pronostico"+"</th>"+"<th>"+"real"+"</th>"+"</tr>"+"</table>"+"</td>");
+              $("#"+fila).append("<td>"+"<table "+bkColor+" border=0px style=width:100%;>"+"<tr>"+"<th>"+"pronostico"+"</th>"+"<th>"+"real"+"</th>"+"</tr>"+"</table>"+"</td>");
             }else{
-              $("#"+fila).append("<td>"+"<table "+bkColor+" border=1 style=width:100%;>"+"<tr>"+"<th>"+"pronostico"+"</th>"+"<th>"+"real"+"</th>"+"</tr>"+"</table>"+"</td>");
+              $("#"+fila).append("<td>"+"<table "+bkColor+" border=0px style=width:100%;>"+"<tr>"+"<th>"+"pronostico"+"</th>"+"<th>"+"real"+"</th>"+"</tr>"+"</table>"+"</td>");
             }
           }
         }else{
@@ -335,13 +335,13 @@
             if(j == 1){
               $("#"+fila).append("<td>"+productos[i-1]+"</td>");
             }else if(j == meses.length+2){
-              $("#"+fila).append("<td"+" id="+"TotalesProductos>"+"<table class=TableInside border=0 style=width:100%; style=height:100%;>"+"<tr>"+"<th"+" id="+"TotalPron"+producto+">"+"TotalPron"+"</th>"+"<th"+" id="+"TotalReal"+producto+">"+"TotalReal"+"</th>"+"</tr>"+"</table></td>");
+              $("#"+fila).append("<td"+" id="+"TotalesProductos>"+"<table class=TableInside border=0px style=width:100%; style=height:100%;>"+"<tr>"+"<th"+" id="+"TotalPron"+producto+">"+"TotalPron"+"</th>"+"<th"+" id="+"TotalReal"+producto+">"+"TotalReal"+"</th>"+"</tr>"+"</table></td>");
             }else{
               var nombreProducto =productos[i-1];
               var anio = 2007;
               var mes = j-1;
 
-              $("#"+fila).append("<td"+" id="+"Valores"+mes+">"+"<table class=TableInside border=0 style=width:100%; style=height:100%;>"+"<tr>"+"<th"+" id="+pronostico+">"+""+"</th>"+"<th"+" id="+real+">"+"real"+"</th>"+"</tr>"+"</table>"+"</td>");
+              $("#"+fila).append("<td"+" id="+"Valores"+mes+">"+"<table class=TableInside border=0px style=width:100%; style=height:100%;>"+"<tr>"+"<th"+" id="+pronostico+">"+""+"</th>"+"<th"+" id="+real+">"+"real"+"</th>"+"</tr>"+"</table>"+"</td>");
               $("#"+pronostico).append(inputToneladas);
               $("#"+pronostico).append(inputPrecio);
             }
