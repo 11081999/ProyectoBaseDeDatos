@@ -59,7 +59,6 @@ body {
 /*                                              */
 /************************************************/
 body{
-
 	background: linear-gradient(rgb(255, 255, 255), rgb(0, 126, 25));
 }
 
@@ -135,6 +134,7 @@ main #info{
 	background-color: rgb(240, 240, 240);
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
+
 input{
 	width: 50px;
 	height: auto;
@@ -148,11 +148,7 @@ input{
 	width: 100%;
 }
 
-table{
-	background-color: rgba(0, 0, 0, 0);
-}
-
-th,td {
+.tablas th,td {
   text-align: left;
 	border: 1px solid black;
  	border-collapse: collapse;
@@ -166,17 +162,28 @@ main {
   justify-content: center;
 }
 
-tr:nth-child(odd) {
+#FilaMeses{
+	background-color: rgb(252, 159, 85);
+}
+
+/*
+#TablaVentas tr:nth-child(odd) {
   background-color: white;
 }
+*/
 
-tr:nth-child(even) {
+#TablaVentas tr:nth-child(even) {
   background-color: rgb(82, 164, 255);
 }
-
-th {
+/*
+.tablas th {
   background-color: rgb(252, 159, 85);
   color: #fff;
+}
+*/
+
+.TableInside {
+	
 }
 
 td a, td input, td img {
