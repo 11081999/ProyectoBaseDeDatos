@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
     <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-    
+
     <meta charset="UTF-8">
     <title>AminotecPlus Hoja de cálculos</title>
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,900" rel="stylesheet">
@@ -40,7 +40,7 @@
 
           </tbody>
         </table>
-       
+
 
         <ul id="tablas"></ul>
         <p>nombre: <input type = "text" id="nombre-producto"></p>
@@ -65,9 +65,9 @@
             <th>Nombre</th>
             <th>Año</th>
             <th>Descripción</th>
-    
+
             <tbody id ="productTable">
-    
+
             </tbody>
 
         <button id= "update-producto">Actualizar Producto</button>
@@ -96,15 +96,15 @@
     </main>
 
 
-   
- 
+
+
 
       </tr>
     </table>
     <script>
-      
 
-  
+
+
 
       $(document).ready(function(){
         //var productos = [];
@@ -126,7 +126,7 @@
 
                                 '</tr>'
                 );
-              
+
               //productos.append(data.nombre_producto + "");
 
             });
@@ -135,7 +135,7 @@
             alert('error al cargar los productos');
           }
         });
-        
+
         ///funciona el post para crear nuevo producto
         $("#add-producto").on('click',function(){
 
@@ -310,7 +310,6 @@
 
       //Siempre Serán los mismos valores (productos)
       var productos = ["Clarex","Lisina", "Metionina", "Treonina", "Glutamato-Mono", "Otros"];
-     
 
       var i;
       var j;
@@ -322,7 +321,7 @@
         var bkColor= "background-color: red;"
 
         if(isOdd(i) == 1){
-          console.log(isOdd(i)+";"+i);
+          //console.log(isOdd(i)+";"+i);
           bkColor= "bgcolor= gltred;"
         }else{
           bkColor= "bgcolor= ;"
@@ -345,12 +344,14 @@
         }else if(i == productos.length+1){
           var j;
           for(j = 1; j < meses.length+3; j++){
+            var mes = meses[j-2];
+
             if(j == 1){
               $("#"+fila).append("<td>"+"TOTAL"+"</td>");
             }else if(z == meses.length+2){
-              $("#"+fila).append("<td>"+"<table "+bkColor+" border=0px style=width:100%;>"+"<tr>"+"<th>"+"pronostico"+"</th>"+"<th>"+"real"+"</th>"+"</tr>"+"</table>"+"</td>");
+              $("#"+fila).append("<td>"+"<table "+bkColor+" border=0px style=width:100%;>"+"<tr>"+"<th id="+"TotalPron"+mes+"> pronostico"+"</th>"+"<th>"+"real"+"</th>"+"</tr>"+"</table>"+"</td>");
             }else{
-              $("#"+fila).append("<td>"+"<table "+bkColor+" border=0px style=width:100%;>"+"<tr>"+"<th>"+"pronostico"+"</th>"+"<th>"+"real"+"</th>"+"</tr>"+"</table>"+"</td>");
+              $("#"+fila).append("<td>"+"<table "+bkColor+" border=0px style=width:100%;>"+"<tr>"+"<th id="+"TotalPron"+mes+"> pronostico"+"</th>"+"<th>"+"real"+"</th>"+"</tr>"+"</table>"+"</td>");
             }
           }
         }else{
@@ -361,55 +362,20 @@
             var pronostico= "Prono"+meses[j-2]+producto;
 
             var nameOfFunction= "myFunction()";
-            var inputToneladas= "Ton.: <input id="+"Prono"+"Toneladas"+mes+" type="+"number"+" value="+0.0+"   onchange="+nameOfFunction+">"+"<br>";
+            var inputToneladas= "Ton: <input id="+"Prono"+"Toneladas"+mes+producto+" type="+"number"+" value="+0.0+"   onchange="+nameOfFunction+">"+"<br>";
             var inputPrecio   = "Prec: <input id="+"Prono"+"Precio"   +mes+" type="+"number"+" value="+0.0+" onchange="+nameOfFunction+">"+"<br>";
             if(j == 1){
               $("#"+fila).append("<td>"+productos[i-1]+"</td>");
             }else if(j == meses.length+2){
               $("#"+fila).append("<td"+" id="+"TotalesProductos>"+"<table class=TableInside border=0px style=width:100%; style=height:100%;>"+"<tr>"+"<th"+" id="+"TotalPron"+producto+">"+"TotalPron"+"</th>"+"<th"+" id="+"TotalReal"+producto+">"+"TotalReal"+"</th>"+"</tr>"+"</table></td>");
             }else{
-              //console.log("Pronostico: "+pronostico);
-              
-
               var nombreProducto =productos[i-1];
               var anio = 2007;
               var mes = j-1;
 
-              console.log(nombreProducto);
-              console.log(anio);
-              console.log(mes);
-              var contador = 0;
-              
-                /*$.ajax({
-                type: "GET",
-                url: "http://localhost:3010/tabla/toneladas/nombreProducto/"+nombreProducto+"/anio/"+anio+"/mes/"+mes,
-                success: function(response){
-                  
-                  $("#"+nombreProducto).val(response.)
-                
-                },
-                error: function(){
-                  alert('error al cargar los productos');
-                }
-              });*/
-              $("#"+fila).append("<td"+" id="+"Valores"+mes+">"+"<table border=1 style=width:100%;>"+"<tr>"+"<th"+" id="+pronostico+">"+""+"</th>"+"<th"+" id="+real+">"+"real"+"</th>"+"</tr>"+"</table>"+"</td>");
+              $("#"+fila).append("<td"+" id="+"Valores"+mes+">"+"<table class=TableInside border=1px style=width:100%; style=height:100%;>"+"<tr>"+"<th"+" id="+pronostico+">"+""+"</th>"+"<th"+" id="+real+">"+"real"+"</th>"+"</tr>"+"</table>"+"</td>");
               $("#"+pronostico).append(inputToneladas);
               $("#"+pronostico).append(inputPrecio);
-              // $.ajax({
-              //   type: "GET",
-              //   url: "http://localhost:3010/tabla/precio/nombreProducto/"+nombreProducto+"/anio/"+anio+"/mes/"+mes,
-              //   success: function(response){
-              //   jQuery.each(response,function(i,data){
-                  
-
-              //     });
-              //   },
-              //   error: function(){
-              //     alert('error al cargar los productos');
-              //   }
-              // });
-              
-             
             }
           }
         }
@@ -419,32 +385,45 @@
 
 
 
-/*
-      myFunction();
       function myFunction() {
         var i;
         var j;
         for (i = 0; i < 1; i++) {
-          document.getElementById("TotalToneladas"+meses[i]).innerHTML = 0;
-          document.getElementById("TotalIngresos"+meses[i]).innerHTML= 0;
-          for (j = 1; j < 7; j++) {
-            document.getElementById("TotalToneladas"+meses[i]).innerHTML =
-              (parseFloat(document.getElementById("TotalToneladas"+meses[i]).value, 10)*10+
-              parseFloat(document.getElementById("Toneladas"+meses[i]+"Producto"+j).value, 10)*10)/10;
 
+          var sum= 0.0;
+
+
+          //document.getElementById("TotalToneladas"+meses[i]).innerHTML = 0;
+          //document.getElementById("TotalIngresos"+meses[i]).innerHTML= 0;
+          for (j = 1; j < 7; j++) {
+            var producto= productos[j-1];
+            var mes = meses[i];
+
+            console.log("PronoToneladas"+mes+producto);
+            console.log(document.getElementById("PronoToneladas"+mes+producto).value);
+
+
+            sum= (parseFloat(sum, 10)*10 + parseFloat(document.getElementById("PronoToneladas"+mes+producto).value, 10)*10)/10;
+            console.log(sum);
+
+            //document.getElementById("TotalPron"+mes).innerHTML =
+              //(parseFloat(document.getElementById("TotalPron"+mes).value, 10)*10+
+              //parseFloat(document.getElementById("PronoToneladas"+mes+producto).value, 10)*10)/10;
+/*
             document.getElementById("Ingreso"+meses[i]+"Producto"+j).innerHTML =
               document.getElementById("Toneladas"+meses[i]+"Producto"+j).value*
               document.getElementById("Precio"+meses[i]+"Producto"+j).value;
-
-            document.getElementById("TotalIngresos"+meses[i]).innerHTML=
-              (parseFloat(document.getElementById("TotalIngresos"+meses[i]).value, 10)*10+
-              parseFloat(document.getElementById("Ingreso"+meses[i]+"Producto"+j).value, 10)*10)/10;
+*/
+            //document.getElementById("TotalIngresos"+meses[i]).innerHTML=
+              //(parseFloat(document.getElementById("TotalIngresos"+meses[i]).value, 10)*10+
+              //parseFloat(document.getElementById("Ingreso"+meses[i]+"Producto"+j).value, 10)*10)/10;
 
 
           }
+          document.getElementById("TotalPron"+mes).innerHTML = sum;
         }
       }
-
+/*
       calcularValoresEgreso();
       function calcularValoresEgreso() {
         var i;
