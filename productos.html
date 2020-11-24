@@ -9,6 +9,9 @@
     <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
@@ -19,11 +22,9 @@
 
     <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/dashboard/">
 
-    <!-- Bootstrap core CSS -->
-    <link href="../../dist/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Custom styles for this template -->
-    <link href="dashboard.css" rel="stylesheet">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
   </head>
 
   <body>
@@ -99,94 +100,183 @@
             <h1 class="h2">Productos</h1>
         
           </div>
+          
+          
+          <button  class="btn btn-secondary float-right" data-target="#loginModal" data-toggle="modal">Añadir Producto</button>
+         
+
+          <div class="modal fade" data-keyboard="false" id="loginModal" tabindex="-1" data-backdrop="static">
+            <div class="modal-dialog modal-lg">
+              <div class="modal-content">
+                <div class="col-xs-12">
+                <button type ="button" class="close" data-dismiss="modal">&times; </button>
+              </div>
+                <div class="modal-header">
+                  
+                  
+                
+
+                  <h4 class="modal-title">Nuevo producto</h4>
+
+                </div>
+                <div class="modal-body">
+                  <form>
+                    <div class="form-group">
+                      <label for="inputNombreProducto">Nombre de producto:</label>
+                      <input class="form-control" placeholder="Introduzca nombre del producto" type= "text" id="inputNombreProducto"/>
+                    </div>
+                    <div class="form-group">
+                      <label for="inputAnio">Año:</label>
+                      <input class="form-control" placeholder="Introduzca el año" type= "number" id="inputAnio"/>
+                    </div>
+                    <div class="form-group">
+                      <label for="inputDescripcion">Descripción:</label>
+                      <input class="form-control" placeholder="Introduzca la descripcion" type= "text" id="inputDescripcion"/>
+                    </div>
+                  </form>
+
+                </div>
+                <div class="modal-footer">
+                  
+                  <button clas="btn btn-primary" id= "add-producto">Añadir</button>
+                  <button clas="btn btn-primary" data-dismiss="modal">Cerrar</button>
+
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+          
+
+
+
+
+
+
           <table class ="table table-striped">
             <tr class="bg-info">
               <th>Producto ID</th>
               <th>Nombre</th>
               <th>Año</th>
               <th>Descripción</th>
+              <th>    </th>
   
               <tbody id ="productTable">
   
               </tbody>
             </table>
-  
-
           
         </main>
     </div>
   </div>
+  <script
+    src="//code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous" ></script>
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="//cdn.rawgit.com/google/code-prettify/master/loader/prettify.js"></script>
+
+
   <script>
-     $(function (){
-            $.ajax({
+
+
+
+// get la tabla con todos los prooductos
+  function getProductos(){
+    $.ajax({
           type: "GET",
+          dataType: "json",
           url: "http://localhost:3010/productos",
           success: function(response){
-            jQuery.each(response,function(i,data){
-              $("#productTable").append('<tr>'+
+             var tableBody = $('#productTable');
+            tableBody.empty();
+            $(response).each(function(i,data){
+              tableBody.append('<tr>'+
                                     '<td>'+data.producto_id+'</td>'+
                                     '<td>'+data.nombre_producto+'</td>'+
                                     '<td>'+data.anio+'</td>'+
                                     '<td>'+data.descripcion+'</td>'+
+                                    '<td><button onclick = "deleteProducto('+data.producto_id+')">Eliminar</button></td>'+
 
                                 '</tr>'
                 );
 
-              //productos.append(data.nombre_producto + "");
-
-            });
+            })
           },
           error: function(){
             alert('error al cargar los productos');
           }
+        })
+
+
+  }
+
+
+        
+
+// crear un nuevo producto
+     $(document).ready(function(){
+       var producto ={};
+       getProductos();
+       $('#add-producto').click(function (){
+        producto.nombre = $('#inputNombreProducto').val();
+        producto.anio = $('#inputAnio').val();
+        producto.descripcion = $('#inputDescripcion').val();
+        var productoObj = JSON.stringify({
+                    "NOMBRE_PRODUCTO": $('#inputNombreProducto').val(),
+                    "ANIO": $('#inputAnio').val(),
+                    "DESCRIPCION": $('#inputDescripcion').val()
+                });
+        $.ajax({
+          url: "http://localhost:3010/productos",
+          method : 'POST',
+          data: productoObj,
+          contentType: "application/json",
+          success: function(){
+            
+            alert('Producto creado.');
+            getProductos();
+
+          },
+          error: function(){
+            alert('Error, favor de checar sus datos.')
+
+          }
+        })
+
+       })
+
+     })
+
+            //delete con un id en especifico de producto
+            function deleteProducto(id){
+              $.ajax({
+          type: "DELETE",
+          url: "http://localhost:3010/productos/"+id,
+          success: function(response){
+            alert('Producto eliminado');
+            getProductos();
+
+          },
+          error: function(){
+            alert('Error, producto no ha sido eliminado.');
+          }
         });
-      });
+            }
+
+  
+
+
+          
+     
+   
   </script>
-
-  <!-- Bootstrap core JavaScript
-  ================================================== -->
-  <!-- Placed at the end of the document so the pages load faster -->
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-  <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
-  <script src="../../assets/js/vendor/popper.min.js"></script>
-  <script src="../../dist/js/bootstrap.min.js"></script>
-
   <!-- Icons -->
   <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
   <script>
     feather.replace()
   </script>
 
-  <!-- Graphs -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
-  <script>
-    var ctx = document.getElementById("myChart");
-    var myChart = new Chart(ctx, {
-      type: 'line',
-      data: {
-        labels: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-        datasets: [{
-          data: [15339, 21345, 18483, 24003, 23489, 24092, 12034],
-          lineTension: 0,
-          backgroundColor: 'transparent',
-          borderColor: '#007bff',
-          borderWidth: 4,
-          pointBackgroundColor: '#007bff'
-        }]
-      },
-      options: {
-        scales: {
-          yAxes: [{
-            ticks: {
-              beginAtZero: false
-            }
-          }]
-        },
-        legend: {
-          display: false,
-        }
-      }
-    });
-  </script>
 </body>
 </html>
