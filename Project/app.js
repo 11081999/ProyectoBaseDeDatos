@@ -57,7 +57,7 @@ app.get('/tabla/toneladas/nombreProducto/:nombreProducto/anio/:anio/mes/:mes',(r
     const {anio } = req.params;
     const {mes } = req.params;
 
-    const sql =`SELECT SUM(VENTA_TIENE_PRODUCTO.TONELADAS_VENDIDAS) FROM PRODUCTO NATURAL JOIN PRECIO_MES NATURAL JOIN VENTA_TIENE_PRODUCTO WHERE PRODUCTO.ANIO = ${ anio} and PRODUCTO.NOMBRE_PRODUCTO = '${ nombreProducto}' and PRECIO_MES.MES = ${ mes}`;
+    const sql =`SELECT SUM(VENTA_TIENE_PRODUCTO.TONELADAS_VENDIDAS) as toneladas_vendidas FROM PRODUCTO NATURAL JOIN PRECIO_MES NATURAL JOIN VENTA_TIENE_PRODUCTO WHERE PRODUCTO.ANIO = ${ anio} and PRODUCTO.NOMBRE_PRODUCTO = '${ nombreProducto}' and PRECIO_MES.MES = ${ mes}`;
     connection.query(sql,(error,results)=>{
         if(error) throw error;
         if(results.length >0){
