@@ -113,7 +113,7 @@
 
           <div>
             <label>Ingrese el año: </label>
-            <input type= "number" id="año" value="2007" onchange="cambioAnio()">
+            <input type= "number" id="anio" value="2007" onchange="cambioAnio()">
 
 
           </div>
@@ -171,7 +171,7 @@
                     "Septiembre", "Octubre", "Noviembre", "Diciembre"];
 
       //Siempre Serán los mismos valores (productos)
-      var productos = ["Clarex","Lisina", "Metionina", "Treonina", "Glutamato-Mono", "Otros"];
+      var productos = ["Clarex","Lisina", "Metionina", "Treonina", "Glutamato", "Otros"];
 
       var i;
       var j;
@@ -255,6 +255,8 @@
         }
       }
 
+      cambioAnio();
+
       $(document).ready(function(){
         //var productos = [];
         $(function (){
@@ -306,7 +308,7 @@
 
                 //document.getElementById("#Real"+"Enero"+productos[i]).innerHTML = response[i].precio_mes;
               //productos.append(data.nombre_producto + "");
-                $("#Real"+"Enero"+productos[i]).append(response[i].precio_mes);
+
                 Array2dPrecioMes.push(response[i].precio_mes);
                 //$("#Real"+"Febrero"+productos[i]).append(response[i+1].precio_mes);
 
@@ -314,6 +316,10 @@
         },
       });
       });
+
+
+
+
         ///funciona el post para crear nuevo producto
         $("#add-producto").on('click',function(){
 
@@ -546,6 +552,39 @@
           }
         }
       }
+
+      function cambioAnio(){
+        var anio = $('#anio').val();
+        var i;
+        var j;
+        for (i = 0; i < 6; i++) {
+          var producto= productos[i];
+          for (j = 0; j < 12; j++) {
+            var mes = meses[j];
+            llamarAjax(producto, mes, anio);
+            console.log("Iteracion: "+i+" "+j);
+            console.log("Producto: "+producto);
+            console.log("mes: "+mes);
+            console.log("Año: "+anio);
+          }
+        }
+      }
+
+      function llamarAjax(producto, mes, anio){
+        $.ajax({
+          type: "GET",
+          url: "http://localhost:3010/tabla/toneladas/"+producto+"/"+anio+"/"+mes,
+          success: function(response){
+            jQuery.each(response,function(i){
+
+                $("#Real"+mes+producto).append(response[i]);
+
+              });
+            },
+          });
+      }
+
+
       /*
       calcularValoresEgreso();
       function calcularValoresEgreso() {
