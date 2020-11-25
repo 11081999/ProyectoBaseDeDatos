@@ -22,9 +22,15 @@
 
     <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/dashboard/">
 
+    <!-- Bootstrap core CSS -->
+    <link href="../../dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="dashboard.css" rel="stylesheet">
 
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-
+    <link href="css/bsAlerts/prettify.css" rel="stylesheet">
+    <link href="css/bsAlerts/styles.css" rel="stylesheet">
   </head>
 
   <body>
@@ -61,6 +67,13 @@
                 <a class="nav-link" href="#">
                   <span data-feather="shopping-cart"></span>
                   Productos <span class="sr-only">(current)</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="fechasVentas.html">
+                  <span class="iconify" data-icon="codicon:calendar"width="22" height="22" ></span>
+                  Fechas de ventas
+             
                 </a>
               </li>
               <li class="nav-item">
@@ -112,9 +125,6 @@
                 <button type ="button" class="close" data-dismiss="modal">&times; </button>
               </div>
                 <div class="modal-header">
-                  
-                  
-                
 
                   <h4 class="modal-title">Nuevo producto</h4>
 
@@ -149,6 +159,49 @@
 
           </div>
 
+
+
+          <div class="modal fade" data-keyboard="false" id="updateModal" tabindex="-1" data-backdrop="static">
+            <div class="modal-dialog modal-lg">
+              <div class="modal-content">
+                <div class="col-xs-12">
+                <button type ="button" class="close" data-dismiss="modal">&times; </button>
+              </div>
+                <div class="modal-header">
+
+                  <h4 class="modal-title">Editar producto</h4>
+
+                </div>
+                <div class="modal-body">
+                  <form>
+                    <div class="form-group">
+                      <label for="updateNombreProducto">Nombre de producto:</label>
+                      <input class="form-control"  type= "text" id="updateNombreProducto"/>
+                    </div>
+                    <div class="form-group">
+                      <label for="updateAnio">Año:</label>
+                      <input class="form-control" type= "number" id="updateAnio"/>
+                    </div>
+                    <div class="form-group">
+                      <label for="updateDescripcion">Descripción:</label>
+                      <input class="form-control"  type= "text" id="updateDescripcion"/>
+                    </div>
+                  </form>
+
+                </div>
+                <div class="modal-footer">
+                  
+                  <button clas="btn btn-primary" id= "modificar-producto">Editar</button>
+                  <button clas="btn btn-primary" data-dismiss="modal">Cerrar</button>
+
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
           
 
 
@@ -158,7 +211,7 @@
 
           <table class ="table table-striped">
             <tr class="bg-info">
-              <th>Producto ID</th>
+              <th>ID producto</th>
               <th>Nombre</th>
               <th>Año</th>
               <th>Descripción</th>
@@ -176,20 +229,18 @@
     src="//code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous" ></script>
   <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <script src="//cdn.rawgit.com/google/code-prettify/master/loader/prettify.js"></script>
-
+  <script src="js/bsAlerts/jquery.bsAlerts.js"></script>
 
   <script>
+    getProductos();
 
-
-
-// get la tabla con todos los prooductos
   function getProductos(){
     $.ajax({
           type: "GET",
           dataType: "json",
           url: "http://localhost:3010/productos",
           success: function(response){
-             var tableBody = $('#productTable');
+            var tableBody = $('#productTable');
             tableBody.empty();
             $(response).each(function(i,data){
               tableBody.append('<tr>'+
@@ -197,10 +248,13 @@
                                     '<td>'+data.nombre_producto+'</td>'+
                                     '<td>'+data.anio+'</td>'+
                                     '<td>'+data.descripcion+'</td>'+
-                                    '<td><button onclick = "deleteProducto('+data.producto_id+')">Eliminar</button></td>'+
+                                    '<td><button data-target="#updateModal" data-toggle="modal" onclick = "modificarProducto('+data.producto_id+')">Editar</button> | <button onclick = "deleteProducto('+data.producto_id+')">Eliminar</button></td>'+
 
                                 '</tr>'
                 );
+               
+
+              //productos.append(data.nombre_producto + "");
 
             })
           },
@@ -215,39 +269,60 @@
 
         
 
-// crear un nuevo producto
-     $(document).ready(function(){
-       var producto ={};
-       getProductos();
-       $('#add-producto').click(function (){
-        producto.nombre = $('#inputNombreProducto').val();
-        producto.anio = $('#inputAnio').val();
-        producto.descripcion = $('#inputDescripcion').val();
-        var productoObj = JSON.stringify({
-                    "NOMBRE_PRODUCTO": $('#inputNombreProducto').val(),
-                    "ANIO": $('#inputAnio').val(),
-                    "DESCRIPCION": $('#inputDescripcion').val()
-                });
-        $.ajax({
-          url: "http://localhost:3010/productos",
-          method : 'POST',
-          data: productoObj,
-          contentType: "application/json",
-          success: function(){
-            
-            alert('Producto creado.');
-            getProductos();
 
-          },
-          error: function(){
-            alert('Error, favor de checar sus datos.')
+                ///funciona el post para crear nuevo producto
+                $("#add-producto").on('click',function(){
 
-          }
-        })
 
-       })
+                  jQuery.ajax({
+                    url: "http://localhost:3010/productos",
+                    type: "POST",
+                    contentType: "application/json",
+                    data: JSON.stringify({
+                        "NOMBRE_PRODUCTO": $('#inputNombreProducto').val(),
+                        "ANIO": $('#inputAnio').val(),
+                        "DESCRIPCION": $('#inputDescripcion').val()
+                    } ),
+                    success: function(){
+                      alert("Producto creado exitosamente");
+                      getProductos();
+                    },
+                    error: function(error){
+                          alert(error);}
 
-     })
+                  })
+                  
+
+
+                  });
+
+              /* //no sirve
+                  $(document).ready(function(){
+                    var producto = {}
+                    $('#add.producto').click(function(){
+    
+                      var productoObj = JSON.stringify({
+                        "NOMBRE_PRODUCTO": $('#inputNombreProducto').val(),
+                        "ANIO": $('#inputAnio').val(),
+                        "DESCRIPCION": $('#inputDescripcion').val()
+                    } )
+                      $.ajax({
+                        url: "http://localhost:3010/productos",
+                        type: "POST",
+                        data: productoObj,
+                        contentType: "application/json; charset=utf-8",
+                        success: function(){
+                          alert("Producto creado exitosamente");
+                        },
+                        error: function(error){
+                          alert(error);
+                        }
+
+                      })
+
+
+                    })
+                  })*/
 
             //delete con un id en especifico de producto
             function deleteProducto(id){
@@ -264,6 +339,59 @@
           }
         });
             }
+
+  //modificar un producto en específico
+  function modificarProducto(id){
+    $.ajax({
+      url:  "http://localhost:3010/productos/"+id,
+      type: 'GET',
+      dataType: 'json',
+      success: function(response){
+        var ventana =$('#updateModal');
+        $(response).each(function(i,data){
+          console.log(data.nombre_producto);
+          $('#updateNombreProducto').val(data.nombre_producto);
+          $('#updateAnio').val(data.anio);
+          $('#updateDescripcion').val(data.descripcion);
+          //ponerProductoModificado(data.producto_id,data.nombre_producto,data.anio, data.descripcion);
+          
+
+        })
+      }
+    })
+  }
+
+  function ponerProductoModificado(data_id,data_nombre, data_anio, data_descripcion){
+    $('#modificar-producto').on('click',function(){
+            var id = data_id;
+            $.ajax({
+              type: "PUT",
+              url:  "http://localhost:3010/productos/"+id,
+              contentType: "application/json",
+                data: JSON.stringify({
+
+                   
+                    "nombre_producto": data_nombre,
+                    "anio": $('#updateAnio').val(data.anio),
+                    "descripcion": $('#updateDescripcion').val(data.descripcion)
+                }),
+                success: function(){
+                  alert("Producto modificado exitosamente");
+                  getProductos();
+                },
+                error: function(error){
+                  alert("Error al modificar el producto, favor de checar los datos.");
+                }
+
+
+            })
+
+
+          });
+
+}
+  
+
 
   
 

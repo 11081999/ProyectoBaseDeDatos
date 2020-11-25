@@ -69,6 +69,39 @@ app.get('/tabla/toneladas/nombreProducto/:nombreProducto/anio/:anio/mes/:mes',(r
 
 })
 
+//usar este para la parte de ventas!!!
+app.get('/tabla/ventas',(req,res)=>{
+
+    const sql =`select * from venta natural join venta_tiene_producto natural join producto`;
+    connection.query(sql,(error,results)=>{
+        if(error) throw error;
+        if(results.length >0){
+            res.json(results);
+        }else{
+            res.send('No hay resultados');
+        }
+    })
+
+})
+
+
+
+
+//usar para la parte de precio mes!!!
+app.get('/tabla/preciosMeses',(req,res)=>{
+
+    const sql =`select * from precio_mes natural join producto`;
+    connection.query(sql,(error,results)=>{
+        if(error) throw error;
+        if(results.length >0){
+            res.json(results);
+        }else{
+            res.send('No hay resultados');
+        }
+    })
+
+})
+
 
 app.get('/tabla/precio/nombreProducto/:nombreProducto/anio/:anio/mes/:mes',(req,res)=>{
     const {nombreProducto } = req.params;
@@ -969,8 +1002,9 @@ app.post('/ventasTienenProductos',(req,res)=>{
     ventaTieneProducto ={
         "PRODUCTO_ID": req.body.PRODUCTO_ID,
         "VENTA_ID": req.body.VENTA_ID,
-        "TONELADAS_VENDIDAS": req.body.TONELADAS_VENDIDAS,
-        "ANIO": req.body.ANIO
+        "TOTAL_VENTA": req.body.TOTAL_VENTA,
+        "TONELADAS_VENDIDAS": req.body.TONELADAS_VENDIDAS
+        
 
     }
 
