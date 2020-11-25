@@ -50,8 +50,6 @@ app.get('/egresos/:id',(req,res)=>{
 })
 
 
-
-
 app.get('/tabla/toneladas/nombreProducto/:nombreProducto/anio/:anio/mes/:mes',(req,res)=>{
     const {nombreProducto } = req.params;
     const {anio } = req.params;
@@ -1018,7 +1016,7 @@ app.post('/ventasTienenProductos',(req,res)=>{
         "VENTA_ID": req.body.VENTA_ID,
         "TOTAL_VENTA": req.body.TOTAL_VENTA,
         "TONELADAS_VENDIDAS": req.body.TONELADAS_VENDIDAS
-        
+
 
     }
 
