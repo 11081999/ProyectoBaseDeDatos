@@ -248,7 +248,7 @@
                                     '<td>'+data.nombre_producto+'</td>'+
                                     '<td>'+data.anio+'</td>'+
                                     '<td>'+data.descripcion+'</td>'+
-                                    '<td><button data-target="#updateModal" data-toggle="modal" onclick = "modificarProducto('+data.producto_id+')">Editar</button> | <button onclick = "deleteProducto('+data.producto_id+')">Eliminar</button></td>'+
+                                    '<td><button data-target="#updateModal" data-toggle="modal" onclick = "modificarProducto('+data.producto_id+'); ponerProductoModificado('+data.producto_id+')">Editar</button> | <button onclick = "deleteProducto('+data.producto_id+')">Eliminar</button></td>'+
 
                                 '</tr>'
                 );
@@ -353,6 +353,7 @@
           $('#updateNombreProducto').val(data.nombre_producto);
           $('#updateAnio').val(data.anio);
           $('#updateDescripcion').val(data.descripcion);
+          
           //ponerProductoModificado(data.producto_id,data.nombre_producto,data.anio, data.descripcion);
           
 
@@ -361,19 +362,19 @@
     })
   }
 
-  function ponerProductoModificado(data_id,data_nombre, data_anio, data_descripcion){
-    $('#modificar-producto').on('click',function(){
-            var id = data_id;
+function ponerProductoModificado(id){
+  $('#modificar-producto').on('click',function(){
+            
             $.ajax({
               type: "PUT",
               url:  "http://localhost:3010/productos/"+id,
               contentType: "application/json",
                 data: JSON.stringify({
 
-                   
-                    "nombre_producto": data_nombre,
-                    "anio": $('#updateAnio').val(data.anio),
-                    "descripcion": $('#updateDescripcion').val(data.descripcion)
+                    "producto_id": id,
+                    "nombre_producto": $('#updateNombreProducto').val(),
+                    "anio": $('#updateAnio').val(),
+                    "descripcion": $('#updateDescripcion').val()
                 }),
                 success: function(){
                   alert("Producto modificado exitosamente");
@@ -390,6 +391,10 @@
           });
 
 }
+
+ 
+
+
   
 
 
