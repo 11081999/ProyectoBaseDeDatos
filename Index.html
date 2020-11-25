@@ -113,7 +113,82 @@
     <script>
 
 
+var meses = ["Enero", "Febrero", "Marzo", "Abril",
+             "Mayo", "Junio", "Julio", "Agosto",
+             "Septiembre", "Octubre", "Noviembre", "Diciembre"];
 
+      //Siempre Serán los mismos valores (productos)
+      var productos = ["Clarex","Lisina", "Metionina", "Treonina", "Glutamato-Mono", "Otros"];
+
+      var i;
+      var j;
+      for (i = 0; i < productos.length+2; i++) {
+        var nameOfFunction;
+        var inputToneladas;
+        var inputPrecio;
+
+        var bkColor= "background-color: red;"
+
+        if(isOdd(i) == 1){
+          //console.log(isOdd(i)+";"+i);
+          bkColor= "bgcolor= gltred;"
+        }else{
+          bkColor= "bgcolor= ;"
+        }
+
+        var fila= "FilaProducto"+i;
+        $("#TablaVentas").append("<tr"+" id="+fila+" "+bkColor+"></tr>");
+
+        if(i == 0){
+          var z;
+          for(z = 1; z < meses.length+3; z++){
+            if(z == 1){
+              $("#"+fila).append("<td>"+"DATOS"+"</td>");
+            }else if(z == meses.length+2){
+              $("#"+fila).append("<td >"+"<table border=0 style=width:100%;>"+"<tr>"+"<th>"+"pronostico"+"</th>"+"<th>"+"real"+"</th>"+"</tr>"+"</table>"+"</td>");
+            }else{
+              $("#"+fila).append("<td >"+"<table border=0 style=width:100%;>"+"<tr>"+"<th>"+"pronostico"+"</th>"+"<th>"+"real"+"</th>"+"</tr>"+"</table>"+"</td>");
+            }
+          }
+        }else if(i == productos.length+1){
+          var j;
+          for(j = 1; j < meses.length+3; j++){
+            var mes = meses[j-2];
+
+            if(j == 1){
+              $("#"+fila).append("<td>"+"TOTAL"+"</td>");
+            }else if(z == meses.length+2){
+              $("#"+fila).append("<td>"+"<table "+bkColor+" border=0px style=width:100%;>"+"<tr>"+"<th id="+"TotalPron"+"TOTAL"+"> pronostico"+"</th>"+"<th>"+"real"+"</th>"+"</tr>"+"</table>"+"</td>");
+            }else{
+              $("#"+fila).append("<td>"+"<table "+bkColor+" border=0px style=width:100%;>"+"<tr>"+"<th id="+"TotalPron"+mes+"> pronostico"+"</th>"+"<th id="+"TotalReal"+mes+">"+0.0+"</th>"+"</tr>"+"</table>"+"</td>");
+            }
+          }
+        }else{
+          for(j = 1; j < meses.length+3; j++){
+            var producto= productos[i-1];
+            var mes = meses[j-2];
+            var real= "Real"+meses[j-2]+producto;
+            var pronostico= "Prono"+meses[j-2]+producto;
+
+            var nameOfFunction= "myFunction()";
+            var inputToneladas= "Ton: <input id="+"Prono"+"Toneladas"+mes+producto+" type="+"number"+" value="+0.0+"   onchange="+nameOfFunction+">"+"<br>";
+            var inputPrecio   = "Prec: <input id="+"Prono"+"Precio"   +mes+" type="+"number"+" value="+0.0+" onchange="+nameOfFunction+">"+"<br>";
+            if(j == 1){
+              $("#"+fila).append("<td>"+productos[i-1]+"</td>");
+            }else if(j == meses.length+2){
+              $("#"+fila).append("<td"+" id="+"TotalesProductos>"+"<table class=TableInside border=0px style=width:100%; style=height:100%;>"+"<tr>"+"<th"+" id="+"TotalPron"+producto+">"+"TotalPron"+"</th>"+"<th"+" id="+"TotalReal"+producto+">"+"TotalReal"+"</th>"+"</tr>"+"</table></td>");
+            }else{
+              var nombreProducto =productos[i-1];
+              var anio = 2007;
+              var mes = j-1;
+
+              $("#"+fila).append("<td"+" id="+"Valores"+mes+">"+"<table class=TableInside border=1px style=width:100%; style=height:100%;>"+"<tr>"+"<th"+" id="+pronostico+">"+""+"</th>"+"<th"+" id="+real+">"+""+"</th>"+"</tr>"+"</table>"+"</td>");
+              $("#"+pronostico).append(inputToneladas);
+              $("#"+pronostico).append(inputPrecio);
+            }
+          }
+        }
+      }
 
       $(document).ready(function(){
         //var productos = [];
@@ -144,7 +219,36 @@
             alert('error al cargar los productos');
           }
         });
+        
+      //YA FUNCIONAAAAAA
+      var Array2dPrecioMes = [];
+      $(document).ready(function(){
+        //var productos = [];
+        //funciona para traer toda la tabla de productos
+        $.ajax({
+          type: "GET",
+          url: "http://localhost:3010/preciosMeses",
+          success: function(response){
+            jQuery.each(response,function(i){
+              $("#productTable").append('<tr>'+
+                                    '<td>'+response[i].precio_mes_id+'</td>'+
+                                    '<td>'+response[i].mes+'</td>'+
+                                    '<td>'+response[i].precio_mes+'</td>'+
+                                    '<td>'+response[i].producto_id+'</td>'+
 
+                                '</tr>'
+                );
+
+                //document.getElementById("#Real"+"Enero"+productos[i]).innerHTML = response[i].precio_mes;
+              //productos.append(data.nombre_producto + "");
+                $("#Real"+"Enero"+productos[i]).append(response[i].precio_mes);
+                Array2dPrecioMes.push(response[i].precio_mes);
+                //$("#Real"+"Febrero"+productos[i]).append(response[i+1].precio_mes);
+
+            }); 
+        },
+    });
+    });
         ///funciona el post para crear nuevo producto
         $("#add-producto").on('click',function(){
 
@@ -305,7 +409,7 @@
 
             var empresasIDArray= {};
             jQuery.each(name, function (i,data){
-              empresasIDArray.append(str(data.empresa_id));
+              //empresasIDArray.append(str(data.empresa_id));
             //Console.log(data.EMPRESA_ID);
             })
 
@@ -313,93 +417,21 @@
         });
       });
 
-      var meses = ["Enero", "Febrero", "Marzo", "Abril",
-             "Mayo", "Junio", "Julio", "Agosto",
-             "Septiembre", "Octubre", "Noviembre", "Diciembre"];
 
-      //Siempre Serán los mismos valores (productos)
-      var productos = ["Clarex","Lisina", "Metionina", "Treonina", "Glutamato-Mono", "Otros"];
-
-      var i;
-      var j;
-      for (i = 0; i < productos.length+2; i++) {
-        var nameOfFunction;
-        var inputToneladas;
-        var inputPrecio;
-
-        var bkColor= "background-color: red;"
-
-        if(isOdd(i) == 1){
-          //console.log(isOdd(i)+";"+i);
-          bkColor= "bgcolor= gltred;"
-        }else{
-          bkColor= "bgcolor= ;"
-        }
-
-        var fila= "FilaProducto"+i;
-        $("#TablaVentas").append("<tr"+" id="+fila+" "+bkColor+"></tr>");
-
-        if(i == 0){
-          var z;
-          for(z = 1; z < meses.length+3; z++){
-            if(z == 1){
-              $("#"+fila).append("<td>"+"DATOS"+"</td>");
-            }else if(z == meses.length+2){
-              $("#"+fila).append("<td >"+"<table border=0 style=width:100%;>"+"<tr>"+"<th>"+"pronostico"+"</th>"+"<th>"+"real"+"</th>"+"</tr>"+"</table>"+"</td>");
-            }else{
-              $("#"+fila).append("<td >"+"<table border=0 style=width:100%;>"+"<tr>"+"<th>"+"pronostico"+"</th>"+"<th>"+"real"+"</th>"+"</tr>"+"</table>"+"</td>");
-            }
-          }
-        }else if(i == productos.length+1){
-          var j;
-          for(j = 1; j < meses.length+3; j++){
-            var mes = meses[j-2];
-
-            if(j == 1){
-              $("#"+fila).append("<td>"+"TOTAL"+"</td>");
-            }else if(z == meses.length+2){
-              $("#"+fila).append("<td>"+"<table "+bkColor+" border=0px style=width:100%;>"+"<tr>"+"<th id="+"TotalPron"+mes+"> pronostico"+"</th>"+"<th>"+"real"+"</th>"+"</tr>"+"</table>"+"</td>");
-            }else{
-              $("#"+fila).append("<td>"+"<table "+bkColor+" border=0px style=width:100%;>"+"<tr>"+"<th id="+"TotalPron"+mes+"> pronostico"+"</th>"+"<th>"+"real"+"</th>"+"</tr>"+"</table>"+"</td>");
-            }
-          }
-        }else{
-          for(j = 1; j < meses.length+3; j++){
-            var producto= productos[i-1];
-            var mes = meses[j-2];
-            var real= "Real"+meses[j-2]+producto;
-            var pronostico= "Prono"+meses[j-2]+producto;
-
-            var nameOfFunction= "myFunction()";
-            var inputToneladas= "Ton: <input id="+"Prono"+"Toneladas"+mes+producto+" type="+"number"+" value="+0.0+"   onchange="+nameOfFunction+">"+"<br>";
-            var inputPrecio   = "Prec: <input id="+"Prono"+"Precio"   +mes+" type="+"number"+" value="+0.0+" onchange="+nameOfFunction+">"+"<br>";
-            if(j == 1){
-              $("#"+fila).append("<td>"+productos[i-1]+"</td>");
-            }else if(j == meses.length+2){
-              $("#"+fila).append("<td"+" id="+"TotalesProductos>"+"<table class=TableInside border=0px style=width:100%; style=height:100%;>"+"<tr>"+"<th"+" id="+"TotalPron"+producto+">"+"TotalPron"+"</th>"+"<th"+" id="+"TotalReal"+producto+">"+"TotalReal"+"</th>"+"</tr>"+"</table></td>");
-            }else{
-              var nombreProducto =productos[i-1];
-              var anio = 2007;
-              var mes = j-1;
-
-              $("#"+fila).append("<td"+" id="+"Valores"+mes+">"+"<table class=TableInside border=1px style=width:100%; style=height:100%;>"+"<tr>"+"<th"+" id="+pronostico+">"+""+"</th>"+"<th"+" id="+real+">"+"real"+"</th>"+"</tr>"+"</table>"+"</td>");
-              $("#"+pronostico).append(inputToneladas);
-              $("#"+pronostico).append(inputPrecio);
-            }
-          }
-        }
-      }
 
       function isOdd(num) { return num % 2;}
 
-
-
+      console.log(Array2dPrecioMes);
+      
+      
       function myFunction() {
+        console.log($("#Real"+"Enero"+"Clarex").val());
         var i;
         var j;
-        for (i = 0; i < 1; i++) {
+        for (i = 0; i < 12; i++) {
 
           var sum= 0.0;
+          var sumaReales = 0.0;
 
 
           //document.getElementById("TotalToneladas"+meses[i]).innerHTML = 0;
@@ -407,14 +439,28 @@
           for (j = 1; j < 7; j++) {
             var producto= productos[j-1];
             var mes = meses[i];
+            var totalToneladasTablaVentaPronostico=0;
+            var nan = NaN;
+            
 
-            console.log("PronoToneladas"+mes+producto);
-            console.log(document.getElementById("PronoToneladas"+mes+producto).value);
+            //console.log("PronoToneladas"+mes+producto);
+            //console.log(document.getElementById("PronoToneladas"+mes+producto).value);
 
 
             sum= (parseFloat(sum, 10)*10 + parseFloat(document.getElementById("PronoToneladas"+mes+producto).value, 10)*10)/10;
-            console.log(sum);
+            totalToneladasTablaVentaPronostico=totalToneladasTablaVentaPronostico+sum;
 
+            if(nan!=nan){
+
+              sumaReales = (parseFloat(sumaReales, 10)*10 + 0.0*10)/10;
+            
+            }else{
+
+              sumaReales = (parseFloat(sumaReales, 10)*10 + parseFloat(document.getElementById("Real"+mes+producto).value, 10)*10)/10;
+              console.log(sumaReales);
+            }
+
+            
             //document.getElementById("TotalPron"+mes).innerHTML =
               //(parseFloat(document.getElementById("TotalPron"+mes).value, 10)*10+
               //parseFloat(document.getElementById("PronoToneladas"+mes+producto).value, 10)*10)/10;
@@ -430,7 +476,9 @@
 
           }
           document.getElementById("TotalPron"+mes).innerHTML = sum;
+          document.getElementById("TotalReal"+mes).innerHTML = sumaReales;
         }
+        //document.getElementById("#TotalPron")
       }
 /*
       calcularValoresEgreso();

@@ -12,7 +12,7 @@ const connection = mysql.createConnection({
     host:'localhost',
     user:'root',
     password: 'password',
-    database: 'projectDB2'
+    database: 'project'
 
 })
 
@@ -58,6 +58,20 @@ app.get('/tabla/toneladas/nombreProducto/:nombreProducto/anio/:anio/mes/:mes',(r
     const {mes } = req.params;
 
     const sql =`SELECT SUM(VENTA_TIENE_PRODUCTO.TONELADAS_VENDIDAS) as toneladas_vendidas FROM PRODUCTO NATURAL JOIN PRECIO_MES NATURAL JOIN VENTA_TIENE_PRODUCTO WHERE PRODUCTO.ANIO = ${ anio} and PRODUCTO.NOMBRE_PRODUCTO = '${ nombreProducto}' and PRECIO_MES.MES = ${ mes}`;
+    connection.query(sql,(error,results)=>{
+        if(error) throw error;
+        if(results.length >0){
+            res.json(results);
+        }else{
+            res.send('No hay resultados');
+        }
+    })
+
+})
+
+app.get('/preciosMeses/mes/total/:mes',(req,res)=>{
+    const {mes } = req.params;
+    const sql =`SELECT SUM(precio_mes) FROM PRECIO_MES WHERE PRECIO_MES.mes=${mes}`;
     connection.query(sql,(error,results)=>{
         if(error) throw error;
         if(results.length >0){
@@ -1014,8 +1028,6 @@ app.post('/ventasTienenProductos',(req,res)=>{
 
     })
 })
-
-
 
 connection.connect(error =>{
     if(error) throw error;
