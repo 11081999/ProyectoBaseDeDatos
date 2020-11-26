@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <script src="https://code.iconify.design/1/1.0.7/iconify.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+    <script src="js/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
+    <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="images/aminotecLogo.png">
+
+    <title>Perfil</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/dashboard/">
+
+    <!-- Bootstrap core CSS -->
+    <link href="../../dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="dashboard.css" rel="stylesheet">
+  </head>
+
+  <body>
+    <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
+      <img src="images/aminotecLogo.png" alt="Logo" width="60" height="50">
+      <div align="left">
+        <a class="navbar-brand col-sm-2 col-md-1 mr-0"  href="#"> AMINOTEC Plus</a>
+        
+      </div>
+     
+    
+
+    <ul class="navbar-nav px-3">
+      <li class="nav-item text-nowrap">
+        <a class="nav-link" href="iniciarSesion.html">Sign out</a>
+      </li>
+    </ul>
+  </nav>
+
+    <div class="container-fluid">
+      <div class="row">
+
+        <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+            <div class="row example mb-5">
+                
+
+                
+              </div>
+          <div class="sidebar-sticky">
+            <ul class="nav flex-column">
+              <li class="nav-item">
+                <a class="nav-link active" href="dashboard.html">
+                  <span data-feather="home"></span>
+                  Dashboard 
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="productos.html">
+                  <span data-feather="shopping-cart"></span>
+                  Productos
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="fechasVentas.html">
+                  <span class="iconify" data-icon="codicon:calendar"width="22" height="22" ></span>
+                  Fechas de ventas
+             
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="ventas.html">
+                  <span data-feather="file"></span>
+                  Ventas
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link" href="preciosDeMes.html">
+                    <span class="iconify" data-icon="feather:dollar-sign" width="22" height="22" ></span>
+                   
+                  Precios de mes 
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link" href="empresa.html">
+                  <span class="iconify" data-icon="codicon:briefcase" width="24" height="24"></span>
+                  Empresa 
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">
+                  <span data-feather="users"></span>
+
+                  Perfil<span class="sr-only">(current)</span>
+                </a>
+              </li>
+            </ul>
+           
+          </div>
+        </nav>
+
+  
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+          <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+            
+            <h1 class="h2">Perfil</h1>
+        
+          </div>
+          <h1 class="h3 mb-3" style="font-size:16px">Nombre(s): </h1>
+          <input class="form-control"  type= "text" id="inputNombre"/>
+          <br>
+          <br>
+          <h1 class="h3 mb-3" style="font-size:16px">Apellidos: </h1>
+          <input class="form-control"  type= "text" id="inputApellidos"/>
+          <br>
+          <br>
+          <h1 class="h3 mb-3" style="font-size:16px">Correo: </h1>
+          <input class="form-control"  type= "text" id="inputCorreo"/>
+          <br>
+          <br>
+          <h1 class="h3 mb-3" style="font-size:16px">Contraseña: </h1>
+          <input type="password" class="form-control"  id="inputContraseña"/>
+          <br>
+          <br>
+          <br>
+          <button  class="btn btn-secondary float-right" id="editar">Editar</button>
+          <br>
+          <br>
+          <button  class="btn btn-secondary float-right" id="eliminar">Eliminar</button>
+          
+
+          </main>
+    </div>
+  </div>
+  
+
+  <script
+    src="//code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous" ></script>
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="//cdn.rawgit.com/google/code-prettify/master/loader/prettify.js"></script>
+  <script src="js/bsAlerts/jquery.bsAlerts.js"></script>
+
+
+
+<script>
+ 
+modificarUsuario();
+
+
+            function modificarUsuario(){
+    $.ajax({
+      url:  "http://localhost:3010/usuarios",
+      type: 'GET',
+      dataType: 'json',
+      success: function(response){
+       
+        $(response).each(function(i,data){
+
+          $('#inputNombre').val(data.nombres);
+          $('#inputApellidos').val(data.apellidos);
+          $('#inputCorreo').val(data.correo);
+          $('#inputContraseña').val(data.contrasenia);
+          ponerUsuario(data.usuario_id);
+          deleteUsuario(data.usuario_id);
+          
+          
+          //ponerProductoModificado(data.producto_id,data.nombre_producto,data.anio, data.descripcion);
+          
+
+        })
+      }
+    })
+  }
+
+
+
+  function ponerUsuario(id){
+    $('#editar').on('click',function(){
+      console.log($('#inputNombre').val());
+            
+            $.ajax({
+              type: "PUT",
+              url:  "http://localhost:3010/usuarios/id/"+id,
+              contentType: "application/json",
+                data: JSON.stringify({
+  
+                    "usuario_id": id,
+                    "nombres": $('#inputNombre').val(),
+                    "apellidos": $('#inputApellidos').val(),
+                    "correo": $('#inputCorreo').val(),
+                    "empresa_id": 1,
+                    "contrasenia": $('#inputContraseña').val()
+                    
+                }),
+                success: function(){
+                  alert("Usuario editado exitosamente");
+                  modificarUsuario();
+            
+                },
+                error: function(error){
+                  alert("Error al editar el usuario, favor de checar los datos.");
+                }
+
+
+            })
+          });
+    
+
+}
+
+            //delete con un id en especifico de usuario
+            function deleteUsuario(id){
+              $('#eliminar').on('click',function(){
+              $.ajax({
+          type: "DELETE",
+          url: "http://localhost:3010/usuarios/"+id,
+          success: function(response){
+            alert('Usuario se ha eliminado');
+            window.location.href ="iniciarSesion.html";
+            modificarUsuario();
+         
+
+          },
+          error: function(){
+            alert('Error, usuario no ha sido eliminado.');
+          }
+        });
+      });
+            }
+
+
+
+</script>
+
+  <!-- Icons -->
+  <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
+  <script>
+    feather.replace()
+  </script>
+
+
+</body>
+</html>

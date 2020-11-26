@@ -1,0 +1,418 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <script src="https://code.iconify.design/1/1.0.7/iconify.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+    <script src="js/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
+    <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="images/aminotecLogo.png">
+
+    <title>Productos</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/dashboard/">
+
+    <!-- Bootstrap core CSS -->
+    <link href="../../dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="dashboard.css" rel="stylesheet">
+
+
+  </head>
+
+  <body>
+    <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
+      <img src="images/aminotecLogo.png" alt="Logo" width="60" height="50">
+      <div align="left">
+        <a class="navbar-brand col-sm-2 col-md-1 mr-0"  href="#"> AMINOTEC Plus</a>
+        
+      </div>
+     
+    
+
+    <ul class="navbar-nav px-3">
+      <li class="nav-item text-nowrap">
+        <a class="nav-link" href="iniciarSesion.html">Sign out</a>
+      </li>
+    </ul>
+  </nav>
+
+    <div class="container-fluid">
+      <div class="row">
+
+        <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+            <div class="row example mb-5">
+                
+
+                
+              </div>
+          <div class="sidebar-sticky">
+            <ul class="nav flex-column">
+              <li class="nav-item">
+                <a class="nav-link active" href="dashboard.html">
+                  <span data-feather="home"></span>
+                  Dashboard 
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">
+                  <span data-feather="shopping-cart"></span>
+                  Productos <span class="sr-only">(current)</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="fechasVentas.html">
+                  <span class="iconify" data-icon="codicon:calendar"width="22" height="22" ></span>
+                  Fechas de ventas
+             
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="ventas.html">
+                  <span data-feather="file"></span>
+                  Ventas
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link" href="preciosDeMes.html">
+                    <span class="iconify" data-icon="feather:dollar-sign" width="22" height="22" ></span>
+                   
+                  Precios de mes
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link" href="empresa.html">
+                  <span class="iconify" data-icon="codicon:briefcase" width="24" height="24"></span>
+                  Empresa
+                </a>
+              </li>
+                            <li class="nav-item">
+                <a class="nav-link" href="usuario.html">
+                  <span data-feather="users"></span>
+
+                  Perfil
+                </a>
+              </li>
+            </ul>
+           
+          </div>
+        </nav>
+
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+          <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+            <h1 class="h2">Productos</h1>
+        
+          </div>
+          
+          
+          <button  class="btn btn-secondary float-right" data-target="#loginModal" data-toggle="modal">Añadir Producto</button>
+         
+
+          <div class="modal fade" data-keyboard="false" id="loginModal" tabindex="-1" data-backdrop="static">
+            <div class="modal-dialog modal-lg">
+              <div class="modal-content">
+                <div class="col-xs-12">
+                <button type ="button" class="close" data-dismiss="modal">&times; </button>
+              </div>
+                <div class="modal-header">
+
+                  <h4 class="modal-title">Nuevo producto</h4>
+
+                </div>
+                <div class="modal-body">
+                  <form>
+                    <div class="form-group">
+                      <label for="inputNombreProducto">Nombre de producto:</label>
+                      <input class="form-control" placeholder="Introduzca nombre del producto" type= "text" id="inputNombreProducto"/>
+                    </div>
+                    <div class="form-group">
+                      <label for="inputAnio">Año:</label>
+                      <input class="form-control" placeholder="Introduzca el año" type= "number" id="inputAnio"/>
+                    </div>
+                    <div class="form-group">
+                      <label for="inputDescripcion">Descripción:</label>
+                      <input class="form-control" placeholder="Introduzca la descripcion" type= "text" id="inputDescripcion"/>
+                    </div>
+                  </form>
+
+                </div>
+                <div class="modal-footer">
+                  
+                  <button clas="btn btn-primary" id= "add-producto">Añadir</button>
+                  <button clas="btn btn-primary" data-dismiss="modal">Cerrar</button>
+
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+
+
+          <div class="modal fade" data-keyboard="false" id="updateModal" tabindex="-1" data-backdrop="static">
+            <div class="modal-dialog modal-lg">
+              <div class="modal-content">
+                <div class="col-xs-12">
+                <button type ="button" class="close" data-dismiss="modal">&times; </button>
+              </div>
+                <div class="modal-header">
+
+                  <h4 class="modal-title">Editar producto</h4>
+
+                </div>
+                <div class="modal-body">
+                  <form>
+                    <div class="form-group">
+                      <label for="updateNombreProducto">Nombre de producto:</label>
+                      <input class="form-control"  type= "text" id="updateNombreProducto"/>
+                    </div>
+                    <div class="form-group">
+                      <label for="updateAnio">Año:</label>
+                      <input class="form-control" type= "number" id="updateAnio"/>
+                    </div>
+                    <div class="form-group">
+                      <label for="updateDescripcion">Descripción:</label>
+                      <input class="form-control"  type= "text" id="updateDescripcion"/>
+                    </div>
+                  </form>
+
+                </div>
+                <div class="modal-footer">
+                  
+                  <button clas="btn btn-primary" id= "modificar-producto">Editar</button>
+                  <button clas="btn btn-primary" data-dismiss="modal">Cerrar</button>
+
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+          
+
+
+
+
+
+
+          <table class ="table table-striped">
+            <tr class="bg-info">
+              <th>ID producto</th>
+              <th>Nombre</th>
+              <th>Año</th>
+              <th>Descripción</th>
+              <th>    </th>
+  
+              <tbody id ="productTable">
+  
+              </tbody>
+            </table>
+          
+        </main>
+    </div>
+  </div>
+  <script
+    src="//code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous" ></script>
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="//cdn.rawgit.com/google/code-prettify/master/loader/prettify.js"></script>
+  <script src="js/bsAlerts/jquery.bsAlerts.js"></script>
+
+  <script>
+    getProductos();
+
+  function getProductos(){
+    $.ajax({
+          type: "GET",
+          dataType: "json",
+          url: "http://localhost:3010/productos",
+          success: function(response){
+            var tableBody = $('#productTable');
+            tableBody.empty();
+            $(response).each(function(i,data){
+              tableBody.append('<tr>'+
+                                    '<td>'+data.producto_id+'</td>'+
+                                    '<td>'+data.nombre_producto+'</td>'+
+                                    '<td>'+data.anio+'</td>'+
+                                    '<td>'+data.descripcion+'</td>'+
+                                    '<td><button data-target="#updateModal" data-toggle="modal" onclick = "modificarProducto('+data.producto_id+'); ponerProductoModificado('+data.producto_id+')">Editar</button> | <button onclick = "deleteProducto('+data.producto_id+')">Eliminar</button></td>'+
+
+                                '</tr>'
+                );
+               
+
+              //productos.append(data.nombre_producto + "");
+
+            })
+          },
+          error: function(){
+            alert('error al cargar los productos');
+          }
+        })
+
+
+  }
+
+
+        
+
+
+                ///funciona el post para crear nuevo producto
+                $("#add-producto").on('click',function(){
+
+
+                  jQuery.ajax({
+                    url: "http://localhost:3010/productos",
+                    type: "POST",
+                    contentType: "application/json",
+                    data: JSON.stringify({
+                        "NOMBRE_PRODUCTO": $('#inputNombreProducto').val(),
+                        "ANIO": $('#inputAnio').val(),
+                        "DESCRIPCION": $('#inputDescripcion').val()
+                    } ),
+                    success: function(){
+                      alert("Producto creado exitosamente");
+                      getProductos();
+                    },
+                    error: function(error){
+                          alert(error);}
+
+                  })
+                  
+
+
+                  });
+
+              /* //no sirve
+                  $(document).ready(function(){
+                    var producto = {}
+                    $('#add.producto').click(function(){
+    
+                      var productoObj = JSON.stringify({
+                        "NOMBRE_PRODUCTO": $('#inputNombreProducto').val(),
+                        "ANIO": $('#inputAnio').val(),
+                        "DESCRIPCION": $('#inputDescripcion').val()
+                    } )
+                      $.ajax({
+                        url: "http://localhost:3010/productos",
+                        type: "POST",
+                        data: productoObj,
+                        contentType: "application/json; charset=utf-8",
+                        success: function(){
+                          alert("Producto creado exitosamente");
+                        },
+                        error: function(error){
+                          alert(error);
+                        }
+
+                      })
+
+
+                    })
+                  })*/
+
+            //delete con un id en especifico de producto
+            function deleteProducto(id){
+              $.ajax({
+          type: "DELETE",
+          url: "http://localhost:3010/productos/"+id,
+          success: function(response){
+            alert('Producto eliminado');
+            getProductos();
+
+          },
+          error: function(){
+            alert('Error, producto no ha sido eliminado.');
+          }
+        });
+            }
+
+  //modificar un producto en específico
+  function modificarProducto(id){
+    $.ajax({
+      url:  "http://localhost:3010/productos/"+id,
+      type: 'GET',
+      dataType: 'json',
+      success: function(response){
+        var ventana =$('#updateModal');
+        $(response).each(function(i,data){
+          console.log(data.nombre_producto);
+          $('#updateNombreProducto').val(data.nombre_producto);
+          $('#updateAnio').val(data.anio);
+          $('#updateDescripcion').val(data.descripcion);
+          
+          //ponerProductoModificado(data.producto_id,data.nombre_producto,data.anio, data.descripcion);
+          
+
+        })
+      }
+    })
+  }
+
+function ponerProductoModificado(id){
+  $('#modificar-producto').on('click',function(){
+            
+            $.ajax({
+              type: "PUT",
+              url:  "http://localhost:3010/productos/"+id,
+              contentType: "application/json",
+                data: JSON.stringify({
+
+                    "producto_id": id,
+                    "nombre_producto": $('#updateNombreProducto').val(),
+                    "anio": $('#updateAnio').val(),
+                    "descripcion": $('#updateDescripcion').val()
+                }),
+                success: function(){
+                  alert("Producto modificado exitosamente");
+                  getProductos();
+                },
+                error: function(error){
+                  alert("Error al modificar el producto, favor de checar los datos.");
+                }
+
+
+            })
+
+
+          });
+
+}
+
+ 
+
+
+  
+
+
+  
+
+
+          
+     
+   
+  </script>
+  <!-- Icons -->
+  <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
+  <script>
+    feather.replace()
+  </script>
+
+</body>
+</html>

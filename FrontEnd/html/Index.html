@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+    <script src="js/jquery.min.js"></script>
+
+    <script type="text/javascript" src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
+    <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+
+    <meta charset="UTF-8">
+    <title>AminotecPlus Hoja de cálculos</title>
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,900" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="css/IndexStyles.css" rel="stylesheet">
+  </head>
+  <body>
+
+    <main>
+
+      <div class="main-wrapper">
+
+        <div class="header">
+          <img id="logo" src="images/logo.svg" alt="" width="10%">
+          <div class="tile--css_animations__demo1">
+            <h6>
+
+
+              <font color="white"><p>AMINOTEC PLUS S.A de C.V.</p></font>
+            </h6>
+            <h5>
+              <font color="white"><p>PRESUPUESTO DE INGRESOS Y EGRESOS</p></font>
+            </h5>
+          </div>
+        </div>
+        <input type="button" value="ACTUALIZAR BASE DE DATOS" onclick="actualizarBaseDeDatos()">
+
+
+          <tbody>
+
+          </tbody>
+        </table>
+
+
+        <ul id="tablas"></ul>
+        <p>nombre: <input type = "text" id="nombre-producto"></p>
+        <p>año: <input type = "number" id="anio-producto"></p>
+        <p>descripción: <input type = "text" id="descripcion-producto"></p>
+        <button id= "add-producto">Añadir producto</button>
+
+        <p>id producto: <input type = "number" id="id-producto"></p>
+        <button id= "buscar-producto">Buscar Producto</button>
+
+        <p>id producto eliminar: <input type = "number" id="id-producto-eliminar"></p>
+        <button id= "eliminar-producto">Eliminar Producto</button>
+
+        <p>id producto que quieres update: <input type = "number" id="id-producto-update"></p>
+        <p>id producto update: <input type = "number" id="id-producto-update-nuevo"></p>
+        <p>nombre update: <input type = "text" id="nombre-producto-update"></p>
+        <p>año update: <input type = "number" id="anio-producto-update"></p>
+        <p>descripción update: <input type = "text" id="descripcion-producto-update"></p>
+        <table class ="table table-striped">
+          <tr class="bg-info">
+            <th>Producto ID</th>
+            <th>Nombre</th>
+            <th>Año</th>
+            <th>Descripción</th>
+
+            <tbody id ="productTable">
+
+            </tbody>
+
+        <button id= "update-producto">Actualizar Producto</button>
+
+
+
+
+        
+        <div id="tablaVentas" class="tablas">
+          <table border="1" style="width:100%;" id="TablaVentas" class="table">
+            <tr id="FilaMeses">
+              <th>Ventas</th>
+              <th>Enero</th>
+              <th>Febrero</th>
+              <th>Marzo</th>
+              <th>Abril</th>
+              <th>Mayo</th>
+              <th>Junio</th>
+              <th>Julio</th>
+              <th>Agosto</th>
+              <th>Septiembre</th>
+              <th>Octubre</th>
+              <th>Noviembre</th>
+              <th>Diciembre</th>
+              <th>TOTAL</th>
+            </tr>
+          </table>
+        </div>
+      </div>
+
+    </main>
+
+
+
+
+
+      </tr>
+    </table>
+    <script>
+
+
+var meses = ["Enero", "Febrero", "Marzo", "Abril",
+             "Mayo", "Junio", "Julio", "Agosto",
+             "Septiembre", "Octubre", "Noviembre", "Diciembre"];
+
+      //Siempre Serán los mismos valores (productos)
+      var productos = ["Clarex","Lisina", "Metionina", "Treonina", "Glutamato-Mono", "Otros"];
+
+      var i;
+      var j;
+      for (i = 0; i < productos.length+2; i++) {
+        var nameOfFunction;
+        var inputToneladas;
+        var inputPrecio;
+
+        var bkColor= "background-color: red;"
+
+        if(isOdd(i) == 1){
+          //console.log(isOdd(i)+";"+i);
+          bkColor= "bgcolor= gltred;"
+        }else{
+          bkColor= "bgcolor= ;"
+        }
+
+        var fila= "FilaProducto"+i;
+        $("#TablaVentas").append("<tr"+" id="+fila+" "+bkColor+"></tr>");
+
+        if(i == 0){
+          var z;
+          for(z = 1; z < meses.length+3; z++){
+            if(z == 1){
+              $("#"+fila).append("<td>"+"DATOS"+"</td>");
+            }else if(z == meses.length+2){
+              $("#"+fila).append("<td >"+"<table border=0 style=width:100%;>"+"<tr>"+"<th>"+"pronostico"+"</th>"+"<th>"+"real"+"</th>"+"</tr>"+"</table>"+"</td>");
+            }else{
+              $("#"+fila).append("<td >"+"<table border=0 style=width:100%;>"+"<tr>"+"<th>"+"pronostico"+"</th>"+"<th>"+"real"+"</th>"+"</tr>"+"</table>"+"</td>");
+            }
+          }
+        }else if(i == productos.length+1){
+          var j;
+          for(j = 1; j < meses.length+3; j++){
+            var mes = meses[j-2];
+
+            if(j == 1){
+              $("#"+fila).append("<td>"+"TOTAL"+"</td>");
+            }else if(z == meses.length+2){
+              $("#"+fila).append("<td>"+"<table "+bkColor+" border=0px style=width:100%;>"+"<tr>"+"<th id="+"TotalPron"+"TOTAL"+"> pronostico"+"</th>"+"<th>"+"real"+"</th>"+"</tr>"+"</table>"+"</td>");
+            }else{
+              $("#"+fila).append("<td>"+"<table "+bkColor+" border=0px style=width:100%;>"+"<tr>"+"<th id="+"TotalPron"+mes+"> pronostico"+"</th>"+"<th id="+"TotalReal"+mes+">"+0.0+"</th>"+"</tr>"+"</table>"+"</td>");
+            }
+          }
+        }else{
+          for(j = 1; j < meses.length+3; j++){
+            var producto= productos[i-1];
+            var mes = meses[j-2];
+            var real= "Real"+meses[j-2]+producto;
+            var pronostico= "Prono"+meses[j-2]+producto;
+
+            var nameOfFunction= "myFunction()";
+            var inputToneladas= "Ton: <input id="+"Prono"+"Toneladas"+mes+producto+" type="+"number"+" value="+0.0+"   onchange="+nameOfFunction+">"+"<br>";
+            var inputPrecio   = "Prec: <input id="+"Prono"+"Precio"   +mes+" type="+"number"+" value="+0.0+" onchange="+nameOfFunction+">"+"<br>";
+            if(j == 1){
+              $("#"+fila).append("<td>"+productos[i-1]+"</td>");
+            }else if(j == meses.length+2){
+              $("#"+fila).append("<td"+" id="+"TotalesProductos>"+"<table class=TableInside border=0px style=width:100%; style=height:100%;>"+"<tr>"+"<th"+" id="+"TotalPron"+producto+">"+"TotalPron"+"</th>"+"<th"+" id="+"TotalReal"+producto+">"+"TotalReal"+"</th>"+"</tr>"+"</table></td>");
+            }else{
+              var nombreProducto =productos[i-1];
+              var anio = 2007;
+              var mes = j-1;
+
+              $("#"+fila).append("<td"+" id="+"Valores"+mes+">"+"<table class=TableInside border=1px style=width:100%; style=height:100%;>"+"<tr>"+"<th"+" id="+pronostico+">"+""+"</th>"+"<th"+" id="+real+">"+""+"</th>"+"</tr>"+"</table>"+"</td>");
+              $("#"+pronostico).append(inputToneladas);
+              $("#"+pronostico).append(inputPrecio);
+            }
+          }
+        }
+      }
+
+      $(document).ready(function(){
+        //var productos = [];
+        $(function (){
+
+
+
+        //funciona para traer toda la tabla de productos
+        $.ajax({
+          type: "GET",
+          url: "http://localhost:3010/productos",
+          success: function(response){
+            jQuery.each(response,function(i,data){
+              $("#productTable").append('<tr>'+
+                                    '<td>'+data.producto_id+'</td>'+
+                                    '<td>'+data.nombre_producto+'</td>'+
+                                    '<td>'+data.anio+'</td>'+
+                                    '<td>'+data.descripcion+'</td>'+
+
+                                '</tr>'
+                );
+
+              //productos.append(data.nombre_producto + "");
+
+            });
+          },
+          error: function(){
+            alert('error al cargar los productos');
+          }
+        });
+        
+      //YA FUNCIONAAAAAA
+      var Array2dPrecioMes = [];
+      $(document).ready(function(){
+        //var productos = [];
+        //funciona para traer toda la tabla de productos
+        $.ajax({
+          type: "GET",
+          url: "http://localhost:3010/preciosMeses",
+          success: function(response){
+            jQuery.each(response,function(i){
+              $("#productTable").append('<tr>'+
+                                    '<td>'+response[i].precio_mes_id+'</td>'+
+                                    '<td>'+response[i].mes+'</td>'+
+                                    '<td>'+response[i].precio_mes+'</td>'+
+                                    '<td>'+response[i].producto_id+'</td>'+
+
+                                '</tr>'
+                );
+
+                //document.getElementById("#Real"+"Enero"+productos[i]).innerHTML = response[i].precio_mes;
+              //productos.append(data.nombre_producto + "");
+                $("#Real"+"Enero"+productos[i]).append(response[i].precio_mes);
+                Array2dPrecioMes.push(response[i].precio_mes);
+                //$("#Real"+"Febrero"+productos[i]).append(response[i+1].precio_mes);
+
+            }); 
+        },
+    });
+    });
+        ///funciona el post para crear nuevo producto
+        $("#add-producto").on('click',function(){
+
+              jQuery.ajax({
+                url: "http://localhost:3010/productos",
+                type: "POST",
+                contentType: "application/json",
+                data: JSON.stringify({
+                    "NOMBRE_PRODUCTO": $('#nombre-producto').val(),
+                    "ANIO": $('#anio-producto').val(),
+                    "DESCRIPCION": $('#descripcion-producto').val()
+                })
+            })
+            .done(function(data, textStatus, jqXHR) {
+                console.log("HTTP Request Succeeded: " + jqXHR.status);
+                console.log(data);
+            })
+            .fail(function(jqXHR, textStatus, errorThrown) {
+                console.log("HTTP Request Failed");
+            })
+            .always(function() {
+                /* ... */
+            });
+
+          });
+          // get con un id en especifico de producto
+
+/*
+          $('#buscar-producto').on('click',function(){
+            var id = $('#id-producto').val();
+            $.ajax({
+          type: "GET",
+          url: "http://localhost:3010/productos/"+id,
+          success: function(response){
+            jQuery.each(response,function(i,data){
+              $("#tablas").append('<li>id:'+data.producto_id+', nombre: '+data.nombre_producto+', año: '+data.anio+ ', descripción: '+data.descripcion+' </li>');
+
+
+            });
+          },
+          error: function(){
+            alert('error al cargar los productos');
+          }
+        });
+*/
+          });
+          console.log(productos);
+
+          //delete con un id en especifico de producto
+          $('#eliminar-producto').on('click',function(){
+            var id = $('#id-producto-eliminar').val();
+            $.ajax({
+          type: "DELETE",
+          url: "http://localhost:3010/productos/"+id,
+          success: function(response){
+
+          },
+          error: function(){
+            alert('Producto eliminado');
+          }
+        });
+
+
+          });
+
+          //update con un id en específico de producto
+
+
+          $('#update-producto').on('click',function(){
+            var id = $('#id-producto-update').val();
+            $.ajax({
+              type: "PUT",
+              url:  "http://localhost:3010/productos/"+id,
+              contentType: "application/json",
+                data: JSON.stringify({
+
+                    "producto_id": $('#id-producto-update-nuevo').val(),
+                    "nombre_producto": $('#nombre-producto-update').val(),
+                    "anio": $('#anio-producto-update').val(),
+                    "descripcion": $('#descripcion-producto-update').val()
+                })
+
+
+
+            })
+
+
+          });
+
+
+
+
+        /*$("#add-producto").on('click',function(){
+
+
+          var producto ={
+
+            "NOMBRE_PRODUCTO": $("#nombre-producto").val(),
+            "ANIO": $("#anio-producto").val(),
+            "DESCRIPCION": $("#descripcion-producto").val()
+
+
+          };
+          console.log(producto);
+          $.ajax({
+            type:"POST",
+            url: "http://localhost:3010/productos",
+            data: producto,
+            success: function(newData){
+              $("#tablas").append('<li> nombre: '+newData.nombre_producto+', año: '+newData.anio+ ', descripción: '+newData.descripcion+' </li>');
+
+            },
+            error: function(){
+            alert('error al guardar nuevo producto');
+          }
+          });
+
+
+        });*/
+
+
+           /* var nombreProducto ="Lisina";
+            var anio = 2007;
+            var mes = 4;
+            $.ajax({
+          type: "GET",
+          url: "http://localhost:3010/tabla/nombreProducto/"+nombreProducto+"/anio/"+anio+"/mes/"+mes,
+          success: function(response){
+            jQuery.each(response,function(i,data){
+              console.log(data);
+
+
+            });
+          },
+          error: function(){
+            alert('error al cargar los productos');
+          }
+        });*/
+
+
+        $.ajax({
+          type:"GET",
+          url:"http://localhost:3010/empresas",
+          success: function(response){
+            var name = response;
+            var tableStrs = "";
+
+            jQuery.each(name, function (i,data){
+            //$("#empresas").append("<tr><td>"+data.empresa_id+"</td></tr>");
+
+            //esto deberia de crear una fila como las que tengo ya hechas
+            //el objetivo es que puedan ver que se asigne el valor (value= "") y podamos leerlo en el console console.log()
+            //para verificar que los datos si se esten transfiriendo
+            $("#empresas").append("<tr><td>"+"Clarex"+"</td><td>"+"Ton:"+"<input id="+"EjemploToneladasEneroProducto"+"type="+"number"+" value="+5+" onchange="+"myFunction()>"+"Precio:"+"<input id="+"EjemploPrecioEneroProducto"+" type="+"number"+" value="+999+" onchange="+"myFunction()>"+"</td><td>"+"Value2"+"</td></tr>");
+
+            //Console.log(data.EMPRESA_ID);
+            })
+
+            var empresasIDArray= {};
+            jQuery.each(name, function (i,data){
+              //empresasIDArray.append(str(data.empresa_id));
+            //Console.log(data.EMPRESA_ID);
+            })
+
+          }
+        });
+      });
+
+
+
+      function isOdd(num) { return num % 2;}
+
+      console.log(Array2dPrecioMes);
+      
+      
+      function myFunction() {
+        console.log($("#Real"+"Enero"+"Clarex").val());
+        var i;
+        var j;
+        for (i = 0; i < 12; i++) {
+
+          var sum= 0.0;
+          var sumaReales = 0.0;
+
+
+          //document.getElementById("TotalToneladas"+meses[i]).innerHTML = 0;
+          //document.getElementById("TotalIngresos"+meses[i]).innerHTML= 0;
+          for (j = 1; j < 7; j++) {
+            var producto= productos[j-1];
+            var mes = meses[i];
+            var totalToneladasTablaVentaPronostico=0;
+            var nan = NaN;
+            
+
+            //console.log("PronoToneladas"+mes+producto);
+            //console.log(document.getElementById("PronoToneladas"+mes+producto).value);
+
+
+            sum= (parseFloat(sum, 10)*10 + parseFloat(document.getElementById("PronoToneladas"+mes+producto).value, 10)*10)/10;
+            totalToneladasTablaVentaPronostico=totalToneladasTablaVentaPronostico+sum;
+
+            if(nan!=nan){
+
+              sumaReales = (parseFloat(sumaReales, 10)*10 + 0.0*10)/10;
+            
+            }else{
+
+              sumaReales = (parseFloat(sumaReales, 10)*10 + parseFloat(document.getElementById("Real"+mes+producto).value, 10)*10)/10;
+              console.log(sumaReales);
+            }
+
+            
+            //document.getElementById("TotalPron"+mes).innerHTML =
+              //(parseFloat(document.getElementById("TotalPron"+mes).value, 10)*10+
+              //parseFloat(document.getElementById("PronoToneladas"+mes+producto).value, 10)*10)/10;
+/*
+            document.getElementById("Ingreso"+meses[i]+"Producto"+j).innerHTML =
+              document.getElementById("Toneladas"+meses[i]+"Producto"+j).value*
+              document.getElementById("Precio"+meses[i]+"Producto"+j).value;
+*/
+            //document.getElementById("TotalIngresos"+meses[i]).innerHTML=
+              //(parseFloat(document.getElementById("TotalIngresos"+meses[i]).value, 10)*10+
+              //parseFloat(document.getElementById("Ingreso"+meses[i]+"Producto"+j).value, 10)*10)/10;
+
+
+          }
+          document.getElementById("TotalPron"+mes).innerHTML = sum;
+          document.getElementById("TotalReal"+mes).innerHTML = sumaReales;
+        }
+        //document.getElementById("#TotalPron")
+      }
+/*
+      calcularValoresEgreso();
+      function calcularValoresEgreso() {
+        var i;
+        var j;
+        for (i = 0; i < 1; i++) {
+          document.getElementById("TotalEgresos"+meses[i]).innerHTML= 0;
+          for (j = 1; j < 33; j++) {
+            console.log(j+"-------->");
+            console.log(parseFloat(document.getElementById("TotalEgresos"+meses[i]).value, 10));
+            console.log(parseFloat(document.getElementById("EgresoTipo"+j).value, 10));
+            document.getElementById("TotalEgresos"+meses[i]).innerHTML=
+              (parseFloat(document.getElementById("TotalEgresos"+meses[i]).value, 10)+
+              parseFloat(document.getElementById("EgresoTipo"+j).value, 10));
+          }
+        }
+      }
+
+      function myFunctionRR() {
+
+        document.getElementById("TotalToneladasEnero").innerHTML =
+          parseInt(document.getElementById("ToneladasEneroProducto1").value, 10)+
+          parseInt(document.getElementById("ToneladasEneroProducto2").value, 10)+
+          parseInt(document.getElementById("ToneladasEneroProducto3").value, 10)+
+          parseInt(document.getElementById("ToneladasEneroProducto4").value, 10)+
+          parseInt(document.getElementById("ToneladasEneroProducto5").value, 10)+
+          parseInt(document.getElementById("ToneladasEneroProducto6").value, 10);
+
+        document.getElementById("IngresoEneroProducto1").innerHTML =
+          document.getElementById("ToneladasEneroProducto1").value*
+          document.getElementById("PrecioEneroProducto1").value;
+
+        document.getElementById("IngresoEneroProducto2").innerHTML =
+          document.getElementById("ToneladasEneroProducto2").value*
+          document.getElementById("PrecioEneroProducto2").value;
+
+        document.getElementById("IngresoEneroProducto3").innerHTML =
+          document.getElementById("ToneladasEneroProducto3").value*
+          document.getElementById("PrecioEneroProducto3").value;
+
+        document.getElementById("IngresoEneroProducto4").innerHTML =
+          document.getElementById("ToneladasEneroProducto4").value*
+          document.getElementById("PrecioEneroProducto4").value;
+
+        document.getElementById("IngresoEneroProducto5").innerHTML =
+          document.getElementById("ToneladasEneroProducto5").value*
+          document.getElementById("PrecioEneroProducto5").value;
+
+        document.getElementById("IngresoEneroProducto6").innerHTML =
+          document.getElementById("ToneladasEneroProducto6").value*
+          document.getElementById("PrecioEneroProducto6").value;
+
+        document.getElementById("TotalIngresosEnero").innerHTML =
+          parseInt(document.getElementById("IngresoEneroProducto1").value, 10)+
+          parseInt(document.getElementById("IngresoEneroProducto2").value, 10)+
+          parseInt(document.getElementById("IngresoEneroProducto3").value, 10)+
+          parseInt(document.getElementById("IngresoEneroProducto4").value, 10)+
+          parseInt(document.getElementById("IngresoEneroProducto5").value, 10)+
+          parseInt(document.getElementById("IngresoEneroProducto6").value, 10);
+
+      }
+*/
+
+
+    </script>
+
+  </body>
+
+</html>
